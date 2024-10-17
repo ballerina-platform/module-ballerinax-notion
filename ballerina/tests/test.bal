@@ -17,9 +17,9 @@ Client notion = check new (notionConfig);
 
 @test:Config {}
 function testGetBlockChildren() returns error? {
-    // BlockChildrenResponse response = check notion->/v1/blocks/[testBlockId]/children();
-    io:println("Block Children Response: ", authToken);
-    // test:assertNotEquals(response, (), "Block children response should not be null");
+    BlockChildrenResponse response = check notion->/v1/blocks/[testBlockId]/children();
+    io:println("Block Children Response: ", response);
+    test:assertNotEquals(response, (), "Block children response should not be null");
 }
  
 @test:Config {}
