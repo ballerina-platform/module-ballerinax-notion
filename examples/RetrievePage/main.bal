@@ -1,9 +1,9 @@
 import ballerina/io;
+import ballerina/os;
 import ballerinax/notion;
- 
+
 configurable string authToken = os:getEnv("NOTION_AUTH_TOKEN");
 configurable string testPageId = "xyz";
-
 
 // Initialize the client with your notion authentication token
 notion:ConnectionConfig config = {

@@ -24,6 +24,7 @@ import ballerina/http;
 @display {label: "Notion", iconPath: "icon.png"}
 public isolated client class Client {
     final http:Client clientEp;
+
     # Gets invoked to initialize the `connector`.
     # The connector initialization requires setting the API credentials. 
     # Create a [Notion account](https://www.notion.so/)  and obtain tokens following [this guide](https://developers.notion.com/docs/authorization).

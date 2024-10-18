@@ -572,7 +572,7 @@ public type ObjectProperties_Summary record {
 # Parent Page Detail
 public type PageParent record {
     # Database ID
-    string database_id?; 
+    string database_id?;
 };
 
 # The databases
