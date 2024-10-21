@@ -18,19 +18,19 @@ Step 1: Create a Notion Integration
 
 1. Log in to your Notion account and navigate to Notion Integrations.
 
-![create integration](https://github.com/Jaagrav/module-ballerinax-notion/blob/main/docs/assets/create-integration.png?raw=true)
+![create integration](https://github.com/ballerina-platform/module-ballerinax-notion/blob/main/docs/assets/create-integration.png?raw=true)
 
 2. Click on New Integration.
 
-![new integration](https://github.com/Jaagrav/module-ballerinax-notion/blob/main/docs/assets/new-integration.png?raw=true)
+![new integration](https://github.com/ballerina-platform/module-ballerinax-notion/blob/main/docs/assets/new-integration.png?raw=true)
 
 3. Provide a name for your integration, and choose the workspace that this integration will have access to.
 
-![integration created](https://github.com/Jaagrav/module-ballerinax-notion/blob/main/docs/assets/integration-created.png?raw=true)
+![integration created](https://github.com/ballerina-platform/module-ballerinax-notion/blob/main/docs/assets/integration-created.png?raw=true)
 
 4. After creating the integration, you will see a page with your Integration Token (which you’ll need in the following steps). Copy the Integration Token and store it securely.
 
-![copy secrets](https://github.com/Jaagrav/module-ballerinax-notion/blob/main/docs/assets/secret.png?raw=true)
+![copy secrets](https://github.com/ballerina-platform/module-ballerinax-notion/blob/main/docs/assets/secret.png?raw=true)
 
 Step 2: Share a Notion Page with Your Integration
 
@@ -39,7 +39,7 @@ Step 2: Share a Notion Page with Your Integration
 3. In the sharing options, search for your integration by the name you provided when creating it.
 4. Grant the integration access by selecting it. This allows your integration to read or update the contents of the page or database.
 
-![connect integration](https://github.com/Jaagrav/module-ballerinax-notion/blob/main/docs/assets/connect-page.png?raw=true)
+![connect integration](https://github.com/ballerina-platform/module-ballerinax-notion/blob/main/docs/assets/connect-page.png?raw=true)
 
 ## Quickstart
 
@@ -103,7 +103,7 @@ PageResponse response = check notion->/v1/pages.post(payload);
 
 ## Examples
 
-The `ballerinax/notion` connector provides practical examples illustrating usage in various scenarios. Explore these [examples](https://github.com/Jaagrav/module-ballerinax-notion/tree/main/examples), covering use cases like creating pages, retrieving users, and managing databases.
+The `ballerinax/notion` connector provides practical examples illustrating usage in various scenarios. Explore these [examples](https://github.com/ballerina-platform/module-ballerinax-notion/tree/main/examples), covering use cases like creating pages, retrieving users, and managing databases.
 
 ## Build from the source
 
