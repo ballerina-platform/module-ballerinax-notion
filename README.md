@@ -8,13 +8,9 @@
 
 ## Overview
 
-[//]: # "TODO: Add overview mentioning the purpose of the module, supported REST API versions, and other high-level details."
-
 The Notion connector allows you to interact with Notion databases and pages programmatically. This module supports various REST API versions provided by Notion and enables you to perform operations such as reading, creating, and updating Notion pages and databases. It’s designed to streamline integration with Notion’s API by simplifying the credential setup and providing easy-to-use methods for interacting with Notion content.
 
 ## Setup guide
-
-[//]: # "TODO: Add detailed steps to obtain credentials and configure the module."
 
 To use the Notion connector, you need to obtain the necessary credentials and configure them within your application. Follow the steps below to set up the credentials:
 
@@ -47,71 +43,67 @@ Step 2: Share a Notion Page with Your Integration
 
 ## Quickstart
 
-[//]: # "TODO: Add a quickstart guide to demonstrate a basic functionality of the module, including sample code snippets."
+### Step 1: Import the module
 
-Simply setup the API client and start using it after initialising with the Notion API key
+Import the `notion` module
 
 ```bal
-configurable string authToken = os:getEnv("NOTION_AUTH_TOKEN");
+import ballerinax/notion;
+```
 
-notion:ConnectionConfig config = {
-    auth: {
-        token: authToken
+### Step 2: Instantiate a new connector
+
+Create a `notion:ConnectionConfig` with the obtained OAuth2.0 tokens and initialize the connector with it.
+
+```bal
+configurable string authToken = ?;
+
+final notion:Client notion = check new notion:Client(
+    config = {
+        auth: {
+            token: authToken
+        }
+    }
+);
+```
+
+Step 3: Invoke the connector operation
+
+Now, utilize the available connector operations.
+
+#### Retrieve an existing page
+
+```bal
+PageResponse result = check notion->/v1/pages/["xyz-page-id"];
+```
+
+#### Creating a page inside another page
+
+```bal
+PageBodyParams payload = {
+    "parent": {
+        "type": "page_id",
+        "page_id": testPageId
+    },
+    "properties": {
+        "title": [
+        {
+            "text": {
+            "content": "Test page"
+            }
+        }
+        ]
+    },
+    "icon": {
+        "emoji": "🥬"
     }
 };
-
-final notion:Client notion = check new (config);
+PageResponse response = check notion->/v1/pages.post(payload);
 ```
 
 ## Examples
 
-Creating a page inside another page using `Notion` module
-
-```bal
-import ballerina/io;
-import ballerinax/notion;
-
-configurable string authToken = os:getEnv("NOTION_AUTH_TOKEN");
-configurable string testPageId = "xyz";
-
-
-// Initialize the client with your notion authentication token
-notion:ConnectionConfig config = {
-    auth: {
-        token: authToken
-    }
-};
-final notion:Client notion = check new (config);
-
-public function main() returns error? {
-    PageBodyParams payload = {
-        "parent": {
-            "type": "page_id",
-            "page_id": testPageId
-        },
-        "properties": {
-          "title": [
-            {
-              "text": {
-                "content": "Test page"
-              }
-            }
-          ]
-        },
-        "icon": {
-          "emoji": "🥬"
-        }
-    };
-    PageResponse response = check notion->/v1/pages.post(payload);
-
-    if result is error {
-        io:println("Error retrieving page: ", result.message());
-    } else {
-        io:println("Page retrieved successfully:");
-        io:println(result.toString());
-    }
-}
-```
+The `ballerinax/notion` connector provides practical examples illustrating usage in various scenarios. Explore these [examples](https://github.com/Jaagrav/module-ballerinax-notion/tree/main/examples), covering use cases like creating pages, retrieving users, and managing databases.
 
 ## Build from the source
 
