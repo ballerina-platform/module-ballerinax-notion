@@ -67,7 +67,7 @@ final notion:Client notion = check new notion:Client(
 );
 ```
 
-Step 3: Invoke the connector operation
+### Step 3: Invoke the connector operation
 
 Now, utilize the available connector operations.
 
