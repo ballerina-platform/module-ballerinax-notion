@@ -1,6 +1,6 @@
 [package]
 org = "wso2"
-name = "retrieve_page"
+name = "create_database"
 version = "0.1.0" 
 
 [build-options]

@@ -5,9 +5,10 @@ name = "notion"
 version = "0.1.0"
 license = ["Apache-2.0"]
 authors = ["Ballerina"]
-keywords = []
-# icon = "icon.png" # TODO: update icon.png
+keywords = ["REST", "API", "Notion", "Notes"]
+icon = "icon.png" 
 repository = "https://github.com/ballerina-platform/module-ballerinax-notion"
+export = ["notion"]
 
 [build-options]
 observabilityIncluded = true

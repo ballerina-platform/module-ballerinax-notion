@@ -17,14 +17,20 @@
 // specific language governing permissions and limitations
 // under the License. 
 
-import ballerina/os;
 import ballerina/test;
+// import ballerina/os;
 
-configurable string authToken = os:getEnv("NOTION_AUTH_TOKEN");
-configurable string testBlockId = os:getEnv("TEST_BLOCK_ID");
-configurable string testDatabaseId = os:getEnv("TEST_DATABASE_ID");
-configurable string testPageId = os:getEnv("TEST_PAGE_ID");
-configurable string testUserId = os:getEnv("TEST_USER_ID");
+// configurable string authToken = os:getEnv("NOTION_AUTH_TOKEN");
+// configurable string testBlockId = os:getEnv("TEST_BLOCK_ID");
+// configurable string testDatabaseId = os:getEnv("TEST_DATABASE_ID");
+// configurable string testPageId = os:getEnv("TEST_PAGE_ID");
+// configurable string testUserId = os:getEnv("TEST_USER_ID");
+
+configurable string authToken = "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";
+configurable string testBlockId = "115c51fb-de92-8029-8678-e5d30f595cb7";
+configurable string testDatabaseId = "115c51fb-de92-80c3-aaf8-d49b099dde60";
+configurable string testPageId = "115c51fb-de92-808e-9657-dadffde239e8";
+configurable string testUserId = "9a689a8e-4e1b-4d5c-984e-820777c7463f";
 
 Client notion = check new Client(
     config = {
