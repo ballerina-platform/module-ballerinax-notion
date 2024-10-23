@@ -45,7 +45,7 @@ Step 2: Share a Notion Page with Your Integration
 
 ### Step 1: Import the module
 
-Import the `notion` module
+Import the `ballerinax/notion` module
 
 ```bal
 import ballerinax/notion;
@@ -74,7 +74,7 @@ Now, utilize the available connector operations.
 #### Retrieve an existing page
 
 ```bal
-PageResponse result = check notion->/v1/pages/["xyz-page-id"];
+PageResponse page = check notion->/v1/pages/["xyz-page-id"];
 ```
 
 #### Creating a page inside another page
@@ -193,7 +193,7 @@ All the contributors are encouraged to read the [Ballerina Code of Conduct](http
 
 ## Useful links
 
--   For more information go to the [`notion` package](https://central.ballerina.io/ballerinax/notion/latest).
+-   For more information go to the [`ballerinax/notion` package](https://central.ballerina.io/ballerinax/notion/latest).
 -   For example demonstrations of the usage, go to [Ballerina By Examples](https://ballerina.io/learn/by-example/).
 -   Chat live with us via our [Discord server](https://discord.gg/ballerinalang).
 -   Post all technical questions on Stack Overflow with the [#ballerina](https://stackoverflow.com/questions/tagged/ballerina) tag.

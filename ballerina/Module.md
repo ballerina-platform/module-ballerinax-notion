@@ -1,11 +1,5 @@
 # Ballerina Notion connector
 
-[![Build](https://github.com/ballerina-platform/module-ballerinax-notion/actions/workflows/ci.yml/badge.svg)](https://github.com/ballerina-platform/module-ballerinax-notion/actions/workflows/ci.yml)
-[![Trivy](https://github.com/ballerina-platform/module-ballerinax-notion/actions/workflows/trivy-scan.yml/badge.svg)](https://github.com/ballerina-platform/module-ballerinax-notion/actions/workflows/trivy-scan.yml)
-[![GraalVM Check](https://github.com/ballerina-platform/module-ballerinax-notion/actions/workflows/build-with-bal-test-graalvm.yml/badge.svg)](https://github.com/ballerina-platform/module-ballerinax-notion/actions/workflows/build-with-bal-test-graalvm.yml)
-[![GitHub Last Commit](https://img.shields.io/github/last-commit/ballerina-platform/module-ballerinax-notion.svg)](https://github.com/ballerina-platform/module-ballerinax-notion/commits/master)
-[![GitHub Issues](https://img.shields.io/github/issues/ballerina-platform/ballerina-library/module/notion.svg?label=Open%20Issues)](https://github.com/ballerina-platform/ballerina-library/labels/module%notion)
-
 ## Overview
 
 The Notion connector allows you to interact with Notion databases and pages programmatically. This module supports various REST API versions provided by Notion and enables you to perform operations such as reading, creating, and updating Notion pages and databases. It’s designed to streamline integration with Notion’s API by simplifying the credential setup and providing easy-to-use methods for interacting with Notion content.
@@ -45,7 +39,7 @@ Step 2: Share a Notion Page with Your Integration
 
 ### Step 1: Import the module
 
-Import the `notion` module
+Import the `ballerinax/notion` module
 
 ```bal
 import ballerinax/notion;
@@ -117,7 +111,7 @@ All the contributors are encouraged to read the [Ballerina Code of Conduct](http
 
 ## Useful links
 
--   For more information go to the [`notion` package](https://central.ballerina.io/ballerinax/notion/latest).
+-   For more information go to the [`ballerinax/notion` package](https://central.ballerina.io/ballerinax/notion/latest).
 -   For example demonstrations of the usage, go to [Ballerina By Examples](https://ballerina.io/learn/by-example/).
 -   Chat live with us via our [Discord server](https://discord.gg/ballerinalang).
 -   Post all technical questions on Stack Overflow with the [#ballerina](https://stackoverflow.com/questions/tagged/ballerina) tag.
