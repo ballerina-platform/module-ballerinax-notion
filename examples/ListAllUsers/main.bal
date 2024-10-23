@@ -18,8 +18,7 @@ import ballerina/io;
 import ballerina/os;
 import ballerinax/notion;
 
-configurable string authToken = os:getEnv("NOTION_AUTH_TOKEN");
-configurable string searchQuery = "xyz";
+configurable string authToken = os:getEnv("NOTION_AUTH_TOKEN"); 
 
 // Initialize the client with your notion authentication token
 final notion:Client notion = check new notion:Client(
@@ -31,7 +30,7 @@ final notion:Client notion = check new notion:Client(
 );
 
 public function main() returns error? { 
-    PaginatedUsers result = check notion->/v1/users.get(); 
+    notion:PaginatedUsers|error result = check notion->/v1/users.get(); 
 
     if result is error {
         io:println("Error retrieving page: ", result.message());

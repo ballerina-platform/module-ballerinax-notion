@@ -31,7 +31,7 @@ final notion:Client notion = check new notion:Client(
 );
 
 public function main() returns error? {
-    PageBodyParams payload = {
+    notion:PageBodyParams payload = {
         "parent": {
             "type": "page_id",
             "page_id": testPageId
@@ -58,7 +58,7 @@ public function main() returns error? {
             }
         }
     };
-    DatabaseResponse_results result = check notion->/v1/databases.post(payload);
+    notion:DatabaseResponse_results|error result = check notion->/v1/databases.post(payload);
 
     if result is error {
         io:println("Error retrieving page: ", result.message());

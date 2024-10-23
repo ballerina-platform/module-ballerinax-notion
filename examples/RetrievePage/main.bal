@@ -15,7 +15,7 @@
 // under the License. 
 
 import ballerina/io;
-import ballerina/os;
+// import ballerina/os;
 import ballerinax/notion;
 
 configurable string authToken = os:getEnv("NOTION_AUTH_TOKEN");
@@ -31,7 +31,7 @@ final notion:Client notion = check new notion:Client(
 );
 
 public function main() returns error? {
-    PageResponse result = check notion->/v1/pages/[testPageId];
+    notion:PageResponse|error result = check notion->/v1/pages/[testPageId];
 
     if result is error {
         io:println("Error retrieving page: ", result.message());

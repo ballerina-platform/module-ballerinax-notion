@@ -17,51 +17,66 @@
 import ballerina/test;
 import ballerina/os;
 
-configurable string authToken = os:getEnv("NOTION_AUTH_TOKEN");
-configurable string testBlockId = os:getEnv("TEST_BLOCK_ID");
-configurable string testDatabaseId = os:getEnv("TEST_DATABASE_ID");
-configurable string testPageId = os:getEnv("TEST_PAGE_ID");
-configurable string testUserId = os:getEnv("TEST_USER_ID");
+configurable boolean isLiveServer = os:getEnv("IS_LIVE_SERVER") == "true";
+configurable string authToken = isLiveServer ? os:getEnv("NOTION_AUTH_TOKEN") : "test_token";
+configurable string testBlockId = isLiveServer ? os:getEnv("TEST_BLOCK_ID") : "test_block_id";
+configurable string testDatabaseId = isLiveServer ? os:getEnv("TEST_DATABASE_ID") : "test_database_id";
+configurable string testPageId = isLiveServer ? os:getEnv("TEST_PAGE_ID") : "test_page_id";
+configurable string testUserId = isLiveServer ? os:getEnv("TEST_USER_ID") : "test_user_id";
+configurable string serviceUrl = isLiveServer ? "https://api.notion.com" : "http://localhost:9090";
 
 Client notion = check new Client(
     config = {
         auth: {
             token: authToken
         }
-    }
+    },
+    serviceUrl = serviceUrl
 );
 
-@test:Config {}
+@test:Config {
+    groups: ["live_tests", "mock_tests"]
+}
 function testGetBlockChildren() returns error? {
     BlockChildrenResponse response = check notion->/v1/blocks/[testBlockId]/children(); 
     test:assertNotEquals(response, (), "Block children response should not be null");
 }
 
-@test:Config {}
+@test:Config {
+    groups: ["live_tests", "mock_tests"]
+}
 function testRetrieveDatabase() returns error? {
     Database response = check notion->/v1/databases/[testDatabaseId]; 
     test:assertNotEquals(response, (), "Retrieved database should not be null");
 }
 
-@test:Config {}
+@test:Config {
+    groups: ["live_tests", "mock_tests"]
+}
 function testRetrievePage() returns error? {
     PageResponse response = check notion->/v1/pages/[testPageId]; 
     test:assertNotEquals(response, (), "Retrieved page should not be null");
 }
 
-@test:Config {}
+@test:Config {
+    groups: ["live_tests", "mock_tests"]
+}
 function testListAllUsers() returns error? {
     PaginatedUsers response = check notion->/v1/users; 
     test:assertNotEquals(response, (), "User list response should not be null");
 }
 
-@test:Config {}
+@test:Config {
+    groups: ["live_tests", "mock_tests"]
+}
 function testRetrieveUser() returns error? {
     User response = check notion->/v1/users/[testUserId];
     test:assertNotEquals(response, (), "Retrieved user should not be null");
 }
 
-@test:Config {}
+@test:Config {
+    groups: ["live_tests", "mock_tests"]
+}
 function testAppendBlockChildren() returns error? {
     PageUpdateRequestBody payload = {
         "children": [
@@ -78,7 +93,9 @@ function testAppendBlockChildren() returns error? {
     test:assertNotEquals(response, (), "Appended block children response should not be null");
 }
 
-@test:Config {}
+@test:Config {
+    groups: ["live_tests", "mock_tests"]
+}
 function testCreateDatabase() returns error? {
     DatabaseBodyParams payload = {
         "parent": {
@@ -108,9 +125,12 @@ function testCreateDatabase() returns error? {
         }
     };
     DatabaseResponse_results response = check notion->/v1/databases.post(payload);
+    test:assertNotEquals(response, (), "Created database response should not be null");
 }
 
-@test:Config {}
+@test:Config {
+    groups: ["live_tests", "mock_tests"]
+}
 function testCreatePage() returns error? {
     PageBodyParams payload = {
         "parent": {
@@ -134,7 +154,9 @@ function testCreatePage() returns error? {
     test:assertNotEquals(response, (), "Created page response should not be null");
 }
 
-@test:Config {}
+@test:Config {
+    groups: ["live_tests", "mock_tests"]
+}
 function testSearchPages() returns error? {
     record {} response = check notion->/v1/search.post(); 
     test:assertNotEquals(response, (), "Search pages response should not be null");

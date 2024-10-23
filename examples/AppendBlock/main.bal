@@ -31,7 +31,7 @@ final notion:Client notion = check new notion:Client(
 );
 
 public function main() returns error? {
-    PageUpdateRequestBody payload = {
+    notion:PageUpdateRequestBody payload = {
         "children": [
             {
                 "object": "block",
@@ -42,7 +42,7 @@ public function main() returns error? {
             }
         ]
     };
-    ChildBlockContent response = check notion->/v1/blocks/[testBlockId]/children.patch(payload);
+    notion:ChildBlockContent|error response = check notion->/v1/blocks/[testBlockId]/children.patch(payload);
 
     if result is error {
         io:println("Error retrieving page: ", result.message());

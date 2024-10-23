@@ -31,7 +31,7 @@ final notion:Client notion = check new notion:Client(
 );
 
 public function main() returns error? {
-    PageBodyParams payload = {
+    notion:PageBodyParams payload = {
         "parent": {
             "type": "page_id",
             "page_id": testPageId
@@ -49,7 +49,7 @@ public function main() returns error? {
             "emoji": "🥬"
         }
     };
-    PageResponse response = check notion->/v1/pages.post(payload);
+    notion:PageResponse|error response = check notion->/v1/pages.post(payload);
 
     if result is error {
         io:println("Error retrieving page: ", result.message());
