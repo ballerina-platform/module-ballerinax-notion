@@ -15,7 +15,7 @@
 // under the License. 
 
 import ballerina/io;
-// import ballerina/os;
+import ballerina/os;
 import ballerinax/notion;
 
 configurable string authToken = os:getEnv("NOTION_AUTH_TOKEN");
