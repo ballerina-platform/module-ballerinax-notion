@@ -20,7 +20,13 @@ import ballerina/log;
 listener http:Listener httpListener = new (9090);
 
 http:Service mockService = service object { 
-    resource function get v1/blocks/[string id]/children(string? page_size, @http:Header string? notion\-version = "2021-05-13") returns BlockChildrenResponse {
+    # Retrieve block children
+    #
+    # + id - block children ID
+    # + page_size - Page size
+    # + Notion\-Version - API Version
+    # + return - 200 Success - Retrieve block children 
+    resource function get v1/blocks/[string id]/children(string? page_size, @http:Header string? Notion\-Version = "2022-06-28") returns BlockChildrenResponse {
         return {
             "object": "list",
             "results": [],
@@ -29,7 +35,12 @@ http:Service mockService = service object {
         };
     }
 
-    resource function get v1/databases/[string id](@http:Header string? notion\-version = "2021-05-13") returns Database {
+    # Retrieve a database
+    #
+    # + id - Database ID
+    # + Notion\-Version - API Version
+    # + return - 200 Success - Retrieve a database 
+    resource function get v1/databases/[string id](@http:Header string? Notion\-Version = "2022-06-28") returns Database {
         return {
             "object": "database",
             "id": id,
@@ -40,7 +51,12 @@ http:Service mockService = service object {
         };
     }
 
-    resource function get v1/pages/[string id](@http:Header string? notion\-version = "2021-05-13") returns PageResponse {
+    # Retrieve a Page
+    #
+    # + id - Page ID
+    # + Notion\-Version - API Version
+    # + return - 200 Success - Retrieve a Page 
+    resource function get v1/pages/[string id](@http:Header string? Notion\-Version = "2022-06-28") returns PageResponse {
         return {
             "object": "page",
             "id": id,
@@ -51,7 +67,13 @@ http:Service mockService = service object {
         };
     }
 
-    resource function get v1/users(string? start_cursor, int? page_size, @http:Header string? notion\-version = "2021-05-13") returns PaginatedUsers {
+    # List all users
+    #
+    # + start_cursor - If supplied, this endpoint will return a page of results starting after the cursor provided. If not supplied, this endpoint will return the first page of results.
+    # + page_size - The number of items from the full list desired in the response. Maximum- 100
+    # + Notion\-Version - API Version
+    # + return - 200 Success - List all users 
+    resource function get v1/users(string? start_cursor, int? page_size, @http:Header string? Notion\-Version = "2022-06-28") returns PaginatedUsers {
         return {
             "object": "list",
             "results": [],
@@ -60,7 +82,12 @@ http:Service mockService = service object {
         };
     }
 
-    resource function get v1/users/[string id](@http:Header string? notion\-version = "2021-05-13") returns User {
+    # Retrieve a user
+    #
+    # + id - User ID
+    # + Notion\-Version - API Version
+    # + return - 200 Success - Retrieve a user 
+    resource function get v1/users/[string id](@http:Header string? Notion\-Version = "2022-06-28") returns User {
         return {
             "object": "user",
             "id": id,
@@ -69,7 +96,12 @@ http:Service mockService = service object {
         };
     }
 
-    resource function patch v1/blocks/[string id]/children(@http:Payload PageUpdateRequestBody payload, @http:Header string? notion\-version = "2021-05-13") returns ChildBlockContent {
+    # Append block children
+    #
+    # + id - block children ID
+    # + Notion\-Version - API Version
+    # + return - 200 Success - Append block children 
+    resource function patch v1/blocks/[string id]/children(@http:Payload PageUpdateRequestBody payload, @http:Header string? Notion\-Version = "2022-06-28") returns ChildBlockContent {
         return {
             "object": "block",
             "id": id,
@@ -80,7 +112,11 @@ http:Service mockService = service object {
         };
     }
 
-    resource function post v1/databases(@http:Payload DatabaseBodyParams payload, @http:Header string? notion\-version = "2021-05-13") returns DatabaseResponse_results {
+    # List all databases
+    #
+    # + Notion\-Version - API Version
+    # + return - 200 Success - List all databases 
+    resource function post v1/databases(@http:Payload DatabaseBodyParams payload, @http:Header string? Notion\-Version = "2022-06-28") returns DatabaseResponse {
         return {
             "archived": false,
             "created_time": "2023-01-01T00:00:00.000Z",
@@ -89,7 +125,12 @@ http:Service mockService = service object {
         };
     }
 
-    resource function post v1/pages(@http:Payload PageBodyParams payload, @http:Header string? notion\-version = "2021-05-13") returns PageResponse {
+    # Create a page
+    #
+    # + Notion\-Version - API Version
+    # + payload - Page information 
+    # + return - 200 Success - Create Page 
+    resource function post v1/pages(@http:Payload PageBodyParams payload, @http:Header string? Notion\-Version = "2022-06-28") returns PageResponse {
         return {
             "archived": false,
             "id": "test_page_id",
@@ -97,8 +138,12 @@ http:Service mockService = service object {
             "last_edited_time": "2023-01-01T00:00:00.000Z"
         };
     }
-
-    resource function post v1/search(@http:Header string? notion\-version = "2021-05-13") returns record {} {
+    
+    # Searches all pages and child pages
+    #
+    # + Notion\-Version - API Version
+    # + return - 200 Success - List all user 
+    resource function post v1/search(@http:Header string? Notion\-Version = "2022-06-28") returns record {} {
         return {
             "object": "list",
             "results": [],

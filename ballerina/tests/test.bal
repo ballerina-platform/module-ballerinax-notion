@@ -124,7 +124,7 @@ function testCreateDatabase() returns error? {
             }
         }
     };
-    DatabaseResponse_results response = check notion->/v1/databases.post(payload);
+    DatabaseResponse response = check notion->/v1/databases.post(payload);
     test:assertNotEquals(response, (), "Created database response should not be null");
 }
 

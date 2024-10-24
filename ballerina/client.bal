@@ -21,7 +21,6 @@ import ballerina/http;
 @display {label: "Notion", iconPath: "icon.png"}
 public isolated client class Client {
     final http:Client clientEp;
-
     # Gets invoked to initialize the `connector`.
     # The connector initialization requires setting the API credentials. 
     # Create a [Notion account](https://www.notion.so/)  and obtain tokens following [this guide](https://developers.notion.com/docs/authorization).
@@ -160,7 +159,7 @@ public isolated client class Client {
     # + headers - Headers to be sent with the request 
     # + payload - Page information 
     # + return - 200 Success - Create a database 
-    resource isolated function post v1/databases(DatabaseBodyParams payload, CreateDatabaseHeaders headers = {}) returns DatabaseResponse_results|error {
+    resource isolated function post v1/databases(DatabaseBodyParams payload, CreateDatabaseHeaders headers = {}) returns DatabaseBodyParams|error {
         string resourcePath = string `/v1/databases`;
         map<string|string[]> httpHeaders = getMapForHeaders(headers);
         http:Request request = new;

@@ -58,12 +58,12 @@ public function main() returns error? {
             }
         }
     };
-    notion:DatabaseResponse_results|error result = check notion->/v1/databases.post(payload);
+    notion:DatabaseResponse|error result = check notion->/v1/databases.post(payload);
 
     if result is error {
-        io:println("Error retrieving page: ", result.message());
+        io:println("Error creating database: ", result.message());
     } else {
-        io:println("Page retrieved successfully:");
+        io:println("Database created successfully:");
         io:println(result.toString());
     }
 }

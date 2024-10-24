@@ -33,9 +33,9 @@ public function main() returns error? {
     notion:PaginatedUsers|error result = check notion->/v1/users.get(); 
 
     if result is error {
-        io:println("Error retrieving page: ", result.message());
+        io:println("Error retrieving users list: ", result.message());
     } else {
-        io:println("Page retrieved successfully:");
+        io:println("Users list retrieved successfully:");
         io:println(result.toString());
     }
 }

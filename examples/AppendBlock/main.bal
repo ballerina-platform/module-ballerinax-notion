@@ -42,12 +42,12 @@ public function main() returns error? {
             }
         ]
     };
-    notion:ChildBlockContent|error response = check notion->/v1/blocks/[testBlockId]/children.patch(payload);
+    notion:ChildBlockContent|error result = check notion->/v1/blocks/[testBlockId]/children.patch(payload);
 
     if result is error {
-        io:println("Error retrieving page: ", result.message());
+        io:println("Error appending to block: ", result.message());
     } else {
-        io:println("Page retrieved successfully:");
+        io:println("Appended to block successfully:");
         io:println(result.toString());
     }
 }

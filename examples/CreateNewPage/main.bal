@@ -49,12 +49,12 @@ public function main() returns error? {
             "emoji": "🥬"
         }
     };
-    notion:PageResponse|error response = check notion->/v1/pages.post(payload);
+    notion:PageResponse|error result = check notion->/v1/pages.post(payload);
 
     if result is error {
-        io:println("Error retrieving page: ", result.message());
+        io:println("Error creating page: ", result.message());
     } else {
-        io:println("Page retrieved successfully:");
+        io:println("Page created successfully:");
         io:println(result.toString());
     }
 }
