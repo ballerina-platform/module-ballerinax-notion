@@ -1,0 +1,5 @@
+[package]
+org = "wso2"
+name = "append_block_children"
+version = "0.1.0"
+distribution = "2201.9.1"

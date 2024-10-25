@@ -1,30 +1,11 @@
 # Examples
 
-The `ballerinax/notion` connector provides practical examples illustrating usage in various scenarios.
+The `ballerinax/notion` connector provides practical examples illustrating usage in various scenarios. Explore these [examples](https://github.com/ballerina-platform/module-ballerinax-notion/tree/main/examples), covering use cases like creating pages, retrieving users, and managing databases.
 
-[//]: # (TODO: Add examples)
-1. 
-2. 
+[//]: # "TODO: Add examples"
 
-## Prerequisites
-
-[//]: # (TODO: Add prerequisites)
-
-## Running an example
-
-Execute the following commands to build an example from the source:
-
-* To build an example:
-
-    ```bash
-    bal build
-    ```
-
-* To run an example:
-
-    ```bash
-    bal run
-    ```
+1. [Creating a new page](https://github.com/ballerina-platform/module-ballerinax-notion/blob/main/examples/CreateNewPage/main.bal)
+2. [Retrieve existing pages](https://github.com/ballerina-platform/module-ballerinax-notion/blob/main/examples/RetrievePage/main.bal)
 
 ## Building the examples with the local module
 
@@ -32,13 +13,13 @@ Execute the following commands to build an example from the source:
 
 Execute the following commands to build all the examples against the changes you have made to the module locally:
 
-* To build all the examples:
+-   To build all the examples:
 
     ```bash
     ./build.sh build
     ```
 
-* To run all the examples:
+-   To run all the examples:
 
     ```bash
     ./build.sh run

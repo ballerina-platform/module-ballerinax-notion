@@ -8,21 +8,107 @@
 
 ## Overview
 
-[//]: # (TODO: Add overview mentioning the purpose of the module, supported REST API versions, and other high-level details.)
+The Notion connector allows you to interact with Notion databases and pages programmatically. This module supports various REST API versions provided by Notion and enables you to perform operations such as reading, creating, and updating Notion pages and databases. It’s designed to streamline integration with Notion’s API by simplifying the credential setup and providing easy-to-use methods for interacting with Notion content.
 
 ## Setup guide
 
-[//]: # (TODO: Add detailed steps to obtain credentials and configure the module.)
+To use the Notion connector, you need to obtain the necessary credentials and configure them within your application. Follow the steps below to set up the credentials:
+
+Step 1: Create a Notion Integration
+
+1. Log in to your Notion account and navigate to Notion Integrations.
+
+![create integration](https://github.com/ballerina-platform/module-ballerinax-notion/blob/main/docs/assets/create-integration.png?raw=true)
+
+2. Click on New Integration.
+
+![new integration](https://github.com/ballerina-platform/module-ballerinax-notion/blob/main/docs/assets/new-integration.png?raw=true)
+
+3. Provide a name for your integration, and choose the workspace that this integration will have access to.
+
+![integration created](https://github.com/ballerina-platform/module-ballerinax-notion/blob/main/docs/assets/integration-created.png?raw=true)
+
+4. After creating the integration, you will see a page with your Integration Token (which you’ll need in the following steps). Copy the Integration Token and store it securely.
+
+![copy secrets](https://github.com/ballerina-platform/module-ballerinax-notion/blob/main/docs/assets/secret.png?raw=true)
+
+Step 2: Share a Notion Page with Your Integration
+
+1. Go to the Notion page or database that you want your integration to access.
+2. Click on the Share button at the top right corner of the page.
+3. In the sharing options, search for your integration by the name you provided when creating it.
+4. Grant the integration access by selecting it. This allows your integration to read or update the contents of the page or database.
+
+![connect integration](https://github.com/ballerina-platform/module-ballerinax-notion/blob/main/docs/assets/connect-page.png?raw=true)
 
 ## Quickstart
 
-[//]: # (TODO: Add a quickstart guide to demonstrate a basic functionality of the module, including sample code snippets.)
+### Step 1: Import the module
+
+Import the `ballerinax/notion` module
+
+```bal
+import ballerinax/notion;
+```
+
+### Step 2: Instantiate a new connector
+
+Create a `notion:ConnectionConfig` with the obtained OAuth2.0 tokens and initialize the connector with it.
+
+```bal
+configurable string authToken = ?;
+
+final notion:Client notion = check new notion:Client(
+    config = {
+        auth: {
+            token: authToken
+        }
+    }
+);
+```
+
+### Step 3: Invoke the connector operation
+
+Now, utilize the available connector operations.
+
+#### Retrieve an existing page
+
+```bal
+PageResponse page = check notion->/v1/pages/["xyz-page-id"];
+```
+
+#### Creating a page inside another page
+
+```bal
+PageBodyParams payload = {
+    "parent": {
+        "type": "page_id",
+        "page_id": testPageId
+    },
+    "properties": {
+        "title": [
+        {
+            "text": {
+            "content": "Test page"
+            }
+        }
+        ]
+    },
+    "icon": {
+        "emoji": "🥬"
+    }
+};
+PageResponse response = check notion->/v1/pages.post(payload);
+```
 
 ## Examples
 
-The `Notion` connector provides practical examples illustrating usage in various scenarios. Explore these [examples](https://github.com/module-ballerinax-notion/tree/main/examples/), covering the following use cases:
+The `ballerinax/notion` connector provides practical examples illustrating usage in various scenarios. Explore these [examples](https://github.com/ballerina-platform/module-ballerinax-notion/tree/main/examples), covering use cases like creating pages, retrieving users, and managing databases.
 
-[//]: # (TODO: Add examples)
+1. [Creating a new page](https://github.com/ballerina-platform/module-ballerinax-notion/blob/main/examples/CreateNewPage/main.bal)
+2. [Retrieve existing pages](https://github.com/ballerina-platform/module-ballerinax-notion/blob/main/examples/RetrievePage/main.bal)
+3. [Retrieve list of all users](https://github.com/ballerina-platform/module-ballerinax-notion/blob/main/examples/ListAllUsers/main.bal)
+4. [Create a new database](https://github.com/ballerina-platform/module-ballerinax-notion/blob/main/examples/CreateDatabase/main.bal)
 
 ## Build from the source
 
@@ -30,16 +116,16 @@ The `Notion` connector provides practical examples illustrating usage in various
 
 1. Download and install Java SE Development Kit (JDK) version 17. You can download it from either of the following sources:
 
-    * [Oracle JDK](https://www.oracle.com/java/technologies/downloads/)
-    * [OpenJDK](https://adoptium.net/)
+    - [Oracle JDK](https://www.oracle.com/java/technologies/downloads/)
+    - [OpenJDK](https://adoptium.net/)
 
-   > **Note:** After installation, remember to set the `JAVA_HOME` environment variable to the directory where JDK was installed.
+    > **Note:** After installation, remember to set the `JAVA_HOME` environment variable to the directory where JDK was installed.
 
 2. Download and install [Ballerina Swan Lake](https://ballerina.io/).
 
 3. Download and install [Docker](https://www.docker.com/get-started).
 
-   > **Note**: Ensure that the Docker daemon is running before executing any tests.
+    > **Note**: Ensure that the Docker daemon is running before executing any tests.
 
 4. Export Github Personal access token with read package permissions as follows,
 
@@ -54,39 +140,39 @@ Execute the commands below to build from the source.
 
 1. To build the package:
 
-   ```bash
-   ./gradlew clean build
-   ```
+    ```bash
+    ./gradlew clean build
+    ```
 
 2. To run the tests:
 
-   ```bash
-   ./gradlew clean test
-   ```
+    ```bash
+    ./gradlew clean test
+    ```
 
 3. To build the without the tests:
 
-   ```bash
-   ./gradlew clean build -x test
-   ```
+    ```bash
+    ./gradlew clean build -x test
+    ```
 
 4. To run tests against different environments:
 
-   ```bash
-   ./gradlew clean test -Pgroups=<Comma separated groups/test cases>
-   ```
+    ```bash
+    ./gradlew clean test -Pgroups=<Comma separated groups/test cases>
+    ```
 
 5. To debug the package with a remote debugger:
 
-   ```bash
-   ./gradlew clean build -Pdebug=<port>
-   ```
+    ```bash
+    ./gradlew clean build -Pdebug=<port>
+    ```
 
 6. To debug with the Ballerina language:
 
-   ```bash
-   ./gradlew clean build -PbalJavaDebug=<port>
-   ```
+    ```bash
+    ./gradlew clean build -PbalJavaDebug=<port>
+    ```
 
 7. Publish the generated artifacts to the local Ballerina Central repository:
 
@@ -96,9 +182,9 @@ Execute the commands below to build from the source.
 
 8. Publish the generated artifacts to the Ballerina Central repository:
 
-   ```bash
-   ./gradlew clean build -PpublishToCentral=true
-   ```
+    ```bash
+    ./gradlew clean build -PpublishToCentral=true
+    ```
 
 ## Contribute to Ballerina
 
@@ -112,7 +198,7 @@ All the contributors are encouraged to read the [Ballerina Code of Conduct](http
 
 ## Useful links
 
-* For more information go to the [`notion` package](https://central.ballerina.io/ballerinax/notion/latest).
-* For example demonstrations of the usage, go to [Ballerina By Examples](https://ballerina.io/learn/by-example/).
-* Chat live with us via our [Discord server](https://discord.gg/ballerinalang).
-* Post all technical questions on Stack Overflow with the [#ballerina](https://stackoverflow.com/questions/tagged/ballerina) tag.
+-   For more information go to the [`ballerinax/notion` package](https://central.ballerina.io/ballerinax/notion/latest).
+-   For example demonstrations of the usage, go to [Ballerina By Examples](https://ballerina.io/learn/by-example/).
+-   Chat live with us via our [Discord server](https://discord.gg/ballerinalang).
+-   Post all technical questions on Stack Overflow with the [#ballerina](https://stackoverflow.com/questions/tagged/ballerina) tag.

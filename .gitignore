@@ -56,3 +56,6 @@ build
 
 # Ignore Docker env file
 docker.env
+
+# Test debug file
+ballerina/tests/main.bal
