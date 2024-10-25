@@ -99,6 +99,11 @@ PageResponse response = check notion->/v1/pages.post(payload);
 
 The `ballerinax/notion` connector provides practical examples illustrating usage in various scenarios. Explore these [examples](https://github.com/ballerina-platform/module-ballerinax-notion/tree/main/examples), covering use cases like creating pages, retrieving users, and managing databases.
 
+1. [Creating a new page](https://github.com/ballerina-platform/module-ballerinax-notion/blob/main/examples/CreateNewPage/main.bal)
+2. [Retrieve existing pages](https://github.com/ballerina-platform/module-ballerinax-notion/blob/main/examples/RetrievePage/main.bal)
+3. [Retrieve list of all users](https://github.com/ballerina-platform/module-ballerinax-notion/blob/main/examples/ListAllUsers/main.bal)
+4. [Create a new database](https://github.com/ballerina-platform/module-ballerinax-notion/blob/main/examples/CreateDatabase/main.bal)
+
 ## Contribute to Ballerina
 
 As an open-source project, Ballerina welcomes contributions from the community.
