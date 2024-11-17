@@ -38,7 +38,10 @@ Client notion = check new Client(
     groups: ["live_tests", "mock_tests"]
 }
 function testGetBlockChildren() returns error? {
-    BlockChildrenResponse response = check notion->/v1/blocks/[testBlockId]/children(); 
+    GetV1BlocksIdChildrenHeaders headers = {
+        "Notion-Version": "2022-06-28"
+    };
+    record {} response = check notion->/v1/blocks/[testBlockId]/children(headers);
     test:assertNotEquals(response, (), "Block children response should not be null");
 }
 
@@ -46,7 +49,10 @@ function testGetBlockChildren() returns error? {
     groups: ["live_tests", "mock_tests"]
 }
 function testRetrieveDatabase() returns error? {
-    Database response = check notion->/v1/databases/[testDatabaseId]; 
+    GetV1DatabasesIdHeaders headers = {
+        "Notion-Version": "2022-06-28"
+    };
+    record {} response = check notion->/v1/databases/[testDatabaseId](headers);
     test:assertNotEquals(response, (), "Retrieved database should not be null");
 }
 
@@ -54,7 +60,10 @@ function testRetrieveDatabase() returns error? {
     groups: ["live_tests", "mock_tests"]
 }
 function testRetrievePage() returns error? {
-    PageResponse response = check notion->/v1/pages/[testPageId]; 
+    GetV1PagesIdHeaders headers = {
+        "Notion-Version": "2022-06-28"
+    };
+    record {} response = check notion->/v1/pages/[testPageId](headers);
     test:assertNotEquals(response, (), "Retrieved page should not be null");
 }
 
@@ -62,7 +71,10 @@ function testRetrievePage() returns error? {
     groups: ["live_tests", "mock_tests"]
 }
 function testListAllUsers() returns error? {
-    PaginatedUsers response = check notion->/v1/users; 
+    GetV1UsersHeaders headers = {
+        "Notion-Version": "2022-06-28"
+    };
+    record {} response = check notion->/v1/users(headers);
     test:assertNotEquals(response, (), "User list response should not be null");
 }
 
@@ -70,7 +82,10 @@ function testListAllUsers() returns error? {
     groups: ["live_tests", "mock_tests"]
 }
 function testRetrieveUser() returns error? {
-    User response = check notion->/v1/users/[testUserId];
+    GetV1UsersIdHeaders headers = {
+        "Notion-Version": "2022-06-28"
+    };
+    record {} response = check notion->/v1/users/[testUserId](headers);
     test:assertNotEquals(response, (), "Retrieved user should not be null");
 }
 
@@ -78,7 +93,10 @@ function testRetrieveUser() returns error? {
     groups: ["live_tests", "mock_tests"]
 }
 function testAppendBlockChildren() returns error? {
-    PageUpdateRequestBody payload = {
+    PatchV1BlocksIdChildrenHeaders headers = {
+        "Notion-Version": "2022-06-28"
+    };
+    record {} payload = {
         "children": [
             {
                 "object": "block",
@@ -89,7 +107,7 @@ function testAppendBlockChildren() returns error? {
             }
         ]
     };
-    ChildBlockContent response = check notion->/v1/blocks/[testBlockId]/children.patch(payload);
+    record {} response = check notion->/v1/blocks/[testBlockId]/children.patch(payload, headers);
     test:assertNotEquals(response, (), "Appended block children response should not be null");
 }
 
@@ -97,7 +115,10 @@ function testAppendBlockChildren() returns error? {
     groups: ["live_tests", "mock_tests"]
 }
 function testCreateDatabase() returns error? {
-    DatabaseBodyParams payload = {
+    PostV1DatabasesHeaders headers = {
+        "Notion-Version": "2022-06-28"
+    };
+    record {} payload = {
         "parent": {
             "type": "page_id",
             "page_id": testPageId
@@ -124,7 +145,7 @@ function testCreateDatabase() returns error? {
             }
         }
     };
-    DatabaseResponse response = check notion->/v1/databases.post(payload);
+    record {} response = check notion->/v1/databases.post(payload, headers);
     test:assertNotEquals(response, (), "Created database response should not be null");
 }
 
@@ -132,7 +153,10 @@ function testCreateDatabase() returns error? {
     groups: ["live_tests", "mock_tests"]
 }
 function testCreatePage() returns error? {
-    PageBodyParams payload = {
+    PostV1PagesHeaders headers = {
+        "Notion-Version": "2022-06-28"
+    };
+    record {} payload = {
         "parent": {
             "type": "page_id",
             "page_id": testPageId
@@ -150,7 +174,7 @@ function testCreatePage() returns error? {
             "emoji": "🥬"
         }
     };
-    PageResponse response = check notion->/v1/pages.post(payload); 
+    record {} response = check notion->/v1/pages.post(payload, headers);
     test:assertNotEquals(response, (), "Created page response should not be null");
 }
 
@@ -158,6 +182,167 @@ function testCreatePage() returns error? {
     groups: ["live_tests", "mock_tests"]
 }
 function testSearchPages() returns error? {
-    record {} response = check notion->/v1/search.post(); 
+    PostV1SearchHeaders headers = {
+        "Notion-Version": "2022-06-28"
+    };
+    record {} payload = {};
+    record {} response = check notion->/v1/search.post(payload, headers);
     test:assertNotEquals(response, (), "Search pages response should not be null");
+}
+
+@test:Config {
+    groups: ["live_tests", "mock_tests"]
+}
+function testDeleteBlock() returns error? {
+    DeleteV1BlocksIdHeaders headers = {
+        "Notion-Version": "2022-06-28"
+    };
+    record {} response = check notion->/v1/blocks/[testBlockId].delete(headers);
+    test:assertNotEquals(response, (), "Delete block response should not be null");
+}
+
+@test:Config {
+    groups: ["live_tests", "mock_tests"]
+}
+function testRetrieveBlock() returns error? {
+    GetV1BlocksIdHeaders headers = {
+        "Notion-Version": "2022-06-28"
+    };
+    record {} response = check notion->/v1/blocks/[testBlockId](headers);
+    test:assertNotEquals(response, (), "Retrieved block should not be null");
+}
+
+@test:Config {
+    groups: ["live_tests", "mock_tests"]
+}
+function testRetrieveComments() returns error? {
+    GetV1CommentsHeaders headers = {
+        "Notion-Version": "2022-06-28"
+    };
+    GetV1CommentsQueries queries = {
+        block_id: testBlockId,
+        page_size: 10
+    };
+    record {} response = check notion->/v1/comments(headers, queries);
+    test:assertNotEquals(response, (), "Comments response should not be null");
+}
+
+@test:Config {
+    groups: ["live_tests", "mock_tests"]
+}
+function testRetrievePageProperty() returns error? {
+    GetV1PagesPageidPropertiesPropertyidHeaders headers = {
+        "Notion-Version": "2022-06-28"
+    };
+    record {} response = check notion->/v1/pages/[testPageId]/properties/["title"](headers);
+    test:assertNotEquals(response, (), "Page property response should not be null");
+}
+
+@test:Config {
+    groups: ["live_tests", "mock_tests"]
+}
+function testRetrieveBotUser() returns error? {
+    GetV1UsersMeHeaders headers = {
+        "Notion-Version": "2022-06-28"
+    };
+    record {} response = check notion->/v1/users/me(headers);
+    test:assertNotEquals(response, (), "Bot user response should not be null");
+}
+
+@test:Config {
+    groups: ["live_tests", "mock_tests"]
+}
+function testUpdateBlock() returns error? {
+    PatchV1BlocksIdHeaders headers = {
+        "Notion-Version": "2022-06-28"
+    };
+    record {} payload = {
+        "paragraph": {
+            "rich_text": [
+                {
+                    "text": {
+                        "content": "Updated content"
+                    }
+                }
+            ]
+        }
+    };
+    record {} response = check notion->/v1/blocks/[testBlockId].patch(payload, headers);
+    test:assertNotEquals(response, (), "Update block response should not be null");
+}
+
+@test:Config {
+    groups: ["live_tests", "mock_tests"]
+}
+function testUpdateDatabase() returns error? {
+    PatchV1DatabasesIdHeaders headers = {
+        "Notion-Version": "2022-06-28"
+    };
+    record {} payload = {
+        "title": [
+            {
+                "text": {
+                    "content": "Updated Database"
+                }
+            }
+        ]
+    };
+    record {} response = check notion->/v1/databases/[testDatabaseId].patch(payload, headers);
+    test:assertNotEquals(response, (), "Update database response should not be null");
+}
+
+@test:Config {
+    groups: ["live_tests", "mock_tests"]
+}
+function testArchivePage() returns error? {
+    PatchV1PagesIdHeaders headers = {
+        "Notion-Version": "2022-06-28"
+    };
+    record {} payload = {
+        "archived": true
+    };
+    record {} response = check notion->/v1/pages/[testPageId].patch(payload, headers);
+    test:assertNotEquals(response, (), "Archive page response should not be null");
+}
+
+@test:Config {
+    groups: ["live_tests", "mock_tests"]
+}
+function testAddComment() returns error? {
+    PostV1CommentsHeaders headers = {
+        "Notion-Version": "2022-06-28"
+    };
+    record {} payload = {
+        "parent": {
+            "page_id": testPageId
+        },
+        "rich_text": [
+            {
+                "text": {
+                    "content": "Test comment"
+                }
+            }
+        ]
+    };
+    record {} response = check notion->/v1/comments.post(payload, headers);
+    test:assertNotEquals(response, (), "Add comment response should not be null");
+}
+
+@test:Config {
+    groups: ["live_tests", "mock_tests"]
+}
+function testQueryDatabase() returns error? {
+    PostV1DatabasesIdQueryHeaders headers = {
+        "Notion-Version": "2022-06-28"
+    };
+    record {} payload = {
+        "filter": {
+            "property": "Name",
+            "rich_text": {
+                "contains": "Test"
+            }
+        }
+    };
+    record {} response = check notion->/v1/databases/[testDatabaseId]/query.post(payload, headers);
+    test:assertNotEquals(response, (), "Query database response should not be null");
 }

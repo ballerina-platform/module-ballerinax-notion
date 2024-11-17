@@ -16,151 +16,137 @@
 
 import ballerina/http;
 
-public type User record {
-    # block objects
-    BlockContent[] text?;
-    # Any nested children blocks
-    BlockContent[] children?;
-    # Whether the to_do is checked or not
-    boolean checked?;
-    # Content of a block element
-    string content?;
+# Represents the Headers record for the operation: postV1DatabasesIdQuery
+public type PostV1DatabasesIdQueryHeaders record {
+    string? Authorization?;
+    string? Notion\-Version?;
+    string? Content\-Type?;
 };
 
-# Represents the Headers record for the operation: searchPages
-public type SearchPagesHeaders record {
-    # API Version
-    string? Notion\-Version = "2022-06-28";
+# Represents the Headers record for the operation: postV1Comments
+public type PostV1CommentsHeaders record {
+    string? Notion\-Version?;
+    string? Content\-Type?;
 };
 
-public type DatabaseResponse record {
-    # block objects
-    BlockContent[] text?;
-    # Any nested children blocks
-    BlockContent[] children?;
-    # Whether the to_do is checked or not
-    boolean checked?;
-    # Content of a block element
-    string content?;
+# Represents the Headers record for the operation: patchV1BlocksIdChildren
+public type PatchV1BlocksIdChildrenHeaders record {
+    string? Authorization?;
+    string? Notion\-Version?;
+    string? Content\-Type?;
 };
 
-public type PageUpdatedProperties record {
-    # block objects
-    BlockContent[] text?;
-    # Any nested children blocks
-    BlockContent[] children?;
-    # Whether the to_do is checked or not
-    boolean checked?;
-    # Content of a block element
-    string content?;
+# Represents the Headers record for the operation: getV1UsersMe
+public type GetV1UsersMeHeaders record {
+    string? Notion\-Version?;
 };
 
-public type PaginatedUsers record {
-    # block objects
-    BlockContent[] text?;
-    # Any nested children blocks
-    BlockContent[] children?;
-    # Whether the to_do is checked or not
-    boolean checked?;
-    # Content of a block element
-    string content?;
+# Represents the Headers record for the operation: getV1Comments
+public type GetV1CommentsHeaders record {
+    string? Notion\-Version?;
 };
 
-public type PageBodyParams record {
-    # block objects
-    BlockContent[] text?;
-    # Any nested children blocks
-    BlockContent[] children?;
-    # Whether the to_do is checked or not
-    boolean checked?;
-    # Content of a block element
-    string content?;
+# Represents the Headers record for the operation: patchV1BlocksId
+public type PatchV1BlocksIdHeaders record {
+    string? Notion\-Version?;
 };
 
-public type PageUpdateRequestBody record {
-    # block objects
-    BlockContent[] text?;
-    # Any nested children blocks
-    BlockContent[] children?;
-    # Whether the to_do is checked or not
-    boolean checked?;
-    # Content of a block element
-    string content?;
+# Represents the Headers record for the operation: getV1BlocksIdChildren
+public type GetV1BlocksIdChildrenHeaders record {
+    string? Notion\-Version?;
 };
 
-# Represents the Headers record for the operation: queryDatabase
-public type QueryDatabaseHeaders record {
-    # API Version
-    string? Notion\-Version = "2022-06-28";
+# Proxy server configurations to be used with the HTTP client endpoint.
+public type ProxyConfig record {|
+    # Host name of the proxy server
+    string host = "";
+    # Proxy server port
+    int port = 0;
+    # Proxy server username
+    string userName = "";
+    # Proxy server password
+    @display {label: "", kind: "password"}
+    string password = "";
+|};
+
+# Represents the Queries record for the operation: getV1Comments
+public type GetV1CommentsQueries record {
+    string? block_id?;
+    int? page_size?;
 };
 
-public type PageContent record {
-    # block objects
-    BlockContent[] text?;
-    # Any nested children blocks
-    BlockContent[] children?;
-    # Whether the to_do is checked or not
-    boolean checked?;
-    # Content of a block element
-    string content?;
+# Represents the Headers record for the operation: postV1Search
+public type PostV1SearchHeaders record {
+    string? Notion\-Version?;
+    string? Content\-Type?;
 };
 
-public type ChildBlockContent record {
-    # block objects
-    BlockContent[] text?;
-    # Any nested children blocks
-    BlockContent[] children?;
-    # Whether the to_do is checked or not
-    boolean checked?;
-    # Content of a block element
-    string content?;
+# Represents the Headers record for the operation: getV1BlocksId
+public type GetV1BlocksIdHeaders record {
+    string? Notion\-Version?;
 };
 
-# Represents the Headers record for the operation: listAllUsers
-public type ListAllUsersHeaders record {
-    # API Version
-    string? Notion\-Version = "2022-06-28";
+# Represents the Headers record for the operation: getV1Users
+public type GetV1UsersHeaders record {
+    string? Notion\-Version?;
 };
 
-public type BlockChildrenResponse record {
-    # block objects
-    BlockContent[] text?;
-    # Any nested children blocks
-    BlockContent[] children?;
-    # Whether the to_do is checked or not
-    boolean checked?;
-    # Content of a block element
-    string content?;
+# Represents the Headers record for the operation: patchV1DatabasesId
+public type PatchV1DatabasesIdHeaders record {
+    string? Notion\-Version?;
 };
 
-# Represents the Queries record for the operation: listAllUsers
-public type ListAllUsersQueries record {
-    # If supplied, this endpoint will return a page of results starting after the cursor provided. If not supplied, this endpoint will return the first page of results.
-    string start_cursor?;
-    # The number of items from the full list desired in the response. Maximum- 100
+# Represents the Queries record for the operation: getV1BlocksIdChildren
+public type GetV1BlocksIdChildrenQueries record {
     int page_size?;
 };
 
-public type Database record {
-    # block objects
-    BlockContent[] text?;
-    # Any nested children blocks
-    BlockContent[] children?;
-    # Whether the to_do is checked or not
-    boolean checked?;
-    # Content of a block element
-    string content?;
+# Represents the Headers record for the operation: patchV1PagesId
+public type PatchV1PagesIdHeaders record {
+    string? Notion\-Version?;
 };
 
-public type PageResponse record {
-    # block objects
-    BlockContent[] text?;
-    # Any nested children blocks
-    BlockContent[] children?;
-    # Whether the to_do is checked or not
-    boolean checked?;
-    # Content of a block element
-    string content?;
+# Provides settings related to HTTP/1.x protocol.
+public type ClientHttp1Settings record {|
+    # Specifies whether to reuse a connection for multiple requests
+    http:KeepAlive keepAlive = http:KEEPALIVE_AUTO;
+    # The chunking behaviour of the request
+    http:Chunking chunking = http:CHUNKING_AUTO;
+    # Proxy server related options
+    ProxyConfig proxy?;
+|};
+
+# Represents the Headers record for the operation: getV1DatabasesId
+public type GetV1DatabasesIdHeaders record {
+    string? Notion\-Version?;
+};
+
+# Represents the Headers record for the operation: postV1Databases
+public type PostV1DatabasesHeaders record {
+    string? Notion\-Version?;
+    string? Content\-Type?;
+};
+
+# Represents the Headers record for the operation: getV1UsersId
+public type GetV1UsersIdHeaders record {
+    string? Notion\-Version?;
+};
+
+# Represents the Headers record for the operation: postV1Pages
+public type PostV1PagesHeaders record {
+    string? Authorization?;
+    string? Notion\-Version?;
+    string? Content\-Type?;
+};
+
+# Represents the Headers record for the operation: getV1PagesPageidPropertiesPropertyid
+public type GetV1PagesPageidPropertiesPropertyidHeaders record {
+    string? Notion\-Version?;
+};
+
+# Represents the Headers record for the operation: deleteV1BlocksId
+public type DeleteV1BlocksIdHeaders record {
+    string? Notion\-Version?;
 };
 
 # Provides a set of configurations for controlling the behaviours when communicating with a remote HTTP endpoint.
@@ -198,126 +184,8 @@ public type ConnectionConfig record {|
     boolean validation = true;
 |};
 
-# Represents the Headers record for the operation: retrieveUser
-public type RetrieveUserHeaders record {
-    # API Version
-    string? Notion\-Version = "2022-06-28";
-};
-
-public type DatabaseBodyParams record {
-    # block objects
-    BlockContent[] text?;
-    # Any nested children blocks
-    BlockContent[] children?;
-    # Whether the to_do is checked or not
-    boolean checked?;
-    # Content of a block element
-    string content?;
-};
-
-public type BlockContent record {
-    # block objects
-    BlockContent[] text?;
-    # Any nested children blocks
-    BlockContent[] children?;
-    # Whether the to_do is checked or not
-    boolean checked?;
-    # Content of a block element
-    string content?;
-};
-
-# Represents the Headers record for the operation: retrieveDatabase
-public type RetrieveDatabaseHeaders record {
-    # API Version
-    string? Notion\-Version = "2022-06-28";
-};
-
-# Proxy server configurations to be used with the HTTP client endpoint.
-public type ProxyConfig record {|
-    # Host name of the proxy server
-    string host = "";
-    # Proxy server port
-    int port = 0;
-    # Proxy server username
-    string userName = "";
-    # Proxy server password
-    @display {label: "", kind: "password"}
-    string password = "";
-|};
-
-# Represents the Headers record for the operation: retrievePage
-public type RetrievePageHeaders record {
-    # API Version
-    string? Notion\-Version = "2022-06-28";
-};
-
-# Represents the Headers record for the operation: updatePageProperties
-public type UpdatePagePropertiesHeaders record {
-    # API Version
-    string? Notion\-Version = "2022-06-28";
-};
-
-# Represents the Queries record for the operation: retrieveBlockChildren
-public type RetrieveBlockChildrenQueries record {
-    # Page size
-    string page_size?;
-};
-
-# Represents the Headers record for the operation: retrieveBlockChildren
-public type RetrieveBlockChildrenHeaders record {
-    # API Version
-    string? Notion\-Version = "2022-06-28";
-};
-
-# Provides settings related to HTTP/1.x protocol.
-public type ClientHttp1Settings record {|
-    # Specifies whether to reuse a connection for multiple requests
-    http:KeepAlive keepAlive = http:KEEPALIVE_AUTO;
-    # The chunking behaviour of the request
-    http:Chunking chunking = http:CHUNKING_AUTO;
-    # Proxy server related options
-    ProxyConfig proxy?;
-|};
-
-# Represents the Headers record for the operation: listAllDatabases
-public type ListAllDatabasesHeaders record {
-    # API Version
-    string? Notion\-Version = "2022-06-28";
-};
-
-public type DatabaseContent record {
-    # block objects
-    BlockContent[] text?;
-    # Any nested children blocks
-    BlockContent[] children?;
-    # Whether the to_do is checked or not
-    boolean checked?;
-    # Content of a block element
-    string content?;
-};
-
-# Represents the Headers record for the operation: createDatabase
-public type CreateDatabaseHeaders record {
-    # API Version
-    string? Notion\-Version = "2022-06-28";
-};
-
-# Represents the Queries record for the operation: listAllDatabases
-public type ListAllDatabasesQueries record {
-    # If supplied, this endpoint will return a page of results starting after the cursor provided. If not supplied, this endpoint will return the first page of results.
-    string start_cursor?;
-    # The number of items from the full list desired in the response. Maximum- 100
-    int page_size?;
-};
-
-# Represents the Headers record for the operation: createPage
-public type CreatePageHeaders record {
-    # API Version
-    string? Notion\-Version = "2022-06-28";
-};
-
-# Represents the Headers record for the operation: appendBlockChildren
-public type AppendBlockChildrenHeaders record {
-    # API Version
-    string? Notion\-Version = "2022-06-28";
+# Represents the Headers record for the operation: getV1PagesId
+public type GetV1PagesIdHeaders record {
+    string? Authorization?;
+    string? Notion\-Version?;
 };
