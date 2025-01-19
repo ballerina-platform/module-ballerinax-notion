@@ -34,6 +34,2396 @@ components:
         bearerAuth:
             type: http
             scheme: bearer
+    schemas:
+        PageObjectProperties:
+            description: Object Properties
+            properties:
+                Author:
+                    description: Author of the database
+                    properties:
+                        id:
+                            description: Author ID
+                            example: qNw_
+                            type: string
+                        multi_select:
+                            description: multi_select values
+                            properties:
+                                options:
+                                    description: The multi_select option
+                                    items:
+                                        description: The option items
+                                        properties:
+                                            color:
+                                                description: Color of the database
+                                                example: default
+                                                type: string
+                                            id:
+                                                description: ID of the database
+                                                example: 15592971-7b30-43d5-9406-2eb69b13fcae
+                                                type: string
+                                            name:
+                                                description: Name of the Database
+                                                example: Spencer Greenberg
+                                                type: string
+                                        type: object
+                                    type: array
+                            type: object
+                        type:
+                            description: The type of the object
+                            example: multi_select
+                            type: string
+                    type: object
+                Link:
+                    description: Related links
+                    properties:
+                        id:
+                            description: Link ID
+                            example: VVMi
+                            type: string
+                        type:
+                            description: Link type
+                            example: url
+                            type: string
+                        url:
+                            description: URL
+                            properties: {}
+                            type: object
+                    type: object
+                Name:
+                    description: The name of the object
+                    properties:
+                        id:
+                            description: Name ID
+                            example: title
+                            type: string
+                        title:
+                            description: title
+                            type: array
+                            items:
+                                type: object
+                                properties: {}
+                        type:
+                            description: title Type
+                            example: title
+                            type: string
+                    type: object
+                Publisher:
+                    description: Publisher Detail
+                    properties:
+                        id:
+                            description: Publisher ID
+                            example: ">$Pb"
+                            type: string
+                        select:
+                            description: Select details of publisher
+                            properties:
+                                options:
+                                    description: The set of options
+                                    items:
+                                        description: The set of items in options
+                                        properties:
+                                            color:
+                                                description: The color
+                                                example: default
+                                                type: string
+                                            id:
+                                                description: The ID of the option
+                                                example: c5ee409a-f307-4176-99ee-6e424fa89afa
+                                                type: string
+                                            name:
+                                                description: The name of the option
+                                                example: NYT
+                                                type: string
+                                        type: object
+                                    type: array
+                            type: object
+                        type:
+                            description: The type of the object
+                            example: select
+                            type: string
+                    type: object
+                Publishing/Release Date:
+                    description: Publishing/Releasing Date
+                    properties:
+                        date:
+                            description: The date of publishing/release
+                            properties: {}
+                            type: object
+                        id:
+                            description: ID of date
+                            example: ?ex+
+                            type: string
+                        type:
+                            description: Type of the object
+                            example: date
+                            type: string
+                    type: object
+                Read:
+                    description: Read details
+                    properties:
+                        checkbox:
+                            description: checkbox details
+                            properties: {}
+                            type: object
+                        id:
+                            description: ID of the checkbox
+                            example: _MWJ
+                            type: string
+                        type:
+                            description: The object type
+                            example: checkbox
+                            type: string
+                    type: object
+                Status:
+                    description: The status ID
+                    properties:
+                        id:
+                            description: The ID of the status
+                            example: "`zz5"
+                            type: string
+                        select:
+                            description: Select details of publisher
+                            properties:
+                                options:
+                                    description: The set of options
+                                    items:
+                                        description: The set of items in options
+                                        properties:
+                                            color:
+                                                description: The color
+                                                example: default
+                                                type: string
+                                            id:
+                                                description: The ID of the option
+                                                example: c5ee409a-f307-4176-99ee-6e424fa89afa
+                                                type: string
+                                            name:
+                                                description: The name of the option
+                                                example: NYT
+                                                type: string
+                                        type: object
+                                    type: array
+                            type: object
+                        type:
+                            description: The object type
+                            example: select
+                            type: string
+                    type: object
+                Summary:
+                    description: The summary of the database
+                    properties:
+                        id:
+                            description: The ID of the summary
+                            example: ?\25
+                            type: string
+                        text:
+                            description: The summary content
+                            properties: {}
+                            type: object
+                        type:
+                            description: The type of the object
+                            example: text
+                            type: string
+                    type: object
+                Type:
+                    description: The database type details
+                    properties:
+                        id:
+                            description: The type ID
+                            example: /7eo
+                            type: string
+                        select:
+                            description: Select details of publisher
+                            properties:
+                                options:
+                                    description: The set of options
+                                    items:
+                                        description: The set of items in options
+                                        properties:
+                                            color:
+                                                description: The color
+                                                example: default
+                                                type: string
+                                            id:
+                                                description: The ID of the option
+                                                example: c5ee409a-f307-4176-99ee-6e424fa89afa
+                                                type: string
+                                            name:
+                                                description: The name of the option
+                                                example: NYT
+                                                type: string
+                                        type: object
+                                    type: array
+                            type: object
+                        type:
+                            description: The object type
+                            example: select
+                            type: string
+                    type: object
+            type: object
+        DatabaseQueryResponse:
+            type: object
+            properties:
+                object:
+                    type: string
+                    description: The type of the response object (e.g., "list")
+                results:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/PageResult'
+                next_cursor:
+                    type: string
+                    nullable: true
+                    description: The cursor for the next page of results, if applicable.
+                has_more:
+                    type: boolean
+                    description: Indicates if there are more results available.
+                type:
+                    type: string
+                    description: The type of the query response.
+
+        PageResult:
+            type: object
+            properties:
+                object:
+                    type: string
+                    description: Type of the result object (e.g., "page").
+                id:
+                    type: string
+                    description: Unique identifier of the page.
+                created_time:
+                    type: string
+                    format: date-time
+                    description: The time when the page was created.
+                last_edited_time:
+                    type: string
+                    format: date-time
+                    description: The last time the page was edited.
+                created_by:
+                    $ref: '#/components/schemas/User'
+                last_edited_by:
+                    $ref: '#/components/schemas/User'
+                cover:
+                    type: string
+                    nullable: true
+                    description: URL of the cover image for the page (if any).
+                icon:
+                    type: string
+                    nullable: true
+                    description: URL of the icon for the page (if any).
+                parent:
+                    $ref: '#/components/schemas/PageParent'
+                archived:
+                    type: boolean
+                    description: Whether the page is archived.
+                in_trash:
+                    type: boolean
+                    description: Whether the page is in the trash.
+                properties:
+                    type: object
+                    properties:
+                        Store_availability:
+                            $ref: '#/components/schemas/Property'
+                        Photo:
+                            $ref: '#/components/schemas/Property'
+                        Description:
+                            $ref: '#/components/schemas/Property'
+
+        PageParent:
+            type: object
+            properties:
+                type:
+                    type: string
+                    description: The type of parent object (e.g., "database_id").
+                database_id:
+                    type: string
+                    description: The ID of the database that this page belongs to.
+
+        Property:
+            type: object
+            properties:
+                id:
+                    type: string
+                    description: The ID of the property.
+                type:
+                    type: string
+                    description: The type of the property (e.g., "multi_select").
+                multi_select:
+                    type: array
+                    items:
+                        type: string
+                    description: List of selected options for multi_select.
+                files:
+                    type: array
+                    items:
+                        type: object
+                        properties:
+                            name:
+                                type: string
+                                description: The name of the file.
+                            url:
+                                type: string
+                                description: The URL of the file.
+
+        ChildBlockContent:
+            type: object
+            properties:
+                children:
+                    type: array
+                    description: A list of child blocks.
+                    items:
+                        $ref: '#/components/schemas/Block'
+        Block:
+            type: object
+            properties:
+                object:
+                    type: string
+                    example: "block"
+                    description: The type of the block object.
+                type:
+                    type: string
+                    description: The type of block (e.g., heading_2, paragraph).
+                heading_2:
+                    $ref: '#/components/schemas/Heading2Content'
+                paragraph:
+                    $ref: '#/components/schemas/ParagraphContent'
+        Heading2Content:
+            type: object
+            properties:
+                rich_text:
+                    type: array
+                    description: Rich text content for the heading.
+                    items:
+                        $ref: '#/components/schemas/RichText'
+        ParagraphContent:
+            type: object
+            properties:
+                rich_text:
+                    type: array
+                    description: Rich text content for the paragraph.
+                    items:
+                        $ref: '#/components/schemas/RichText'
+        RichText:
+            type: object
+            properties:
+                type:
+                    type: string
+                    example: "text"
+                    description: The type of rich text content.
+                text:
+                    $ref: '#/components/schemas/TextContent'
+        TextContent:
+            type: object
+            properties:
+                content:
+                    type: string
+                    description: The actual text content.
+                link:
+                    $ref: '#/components/schemas/LinkContent'
+        LinkContent:
+            type: object
+            properties:
+                url:
+                    type: string
+                    format: uri
+                    description: The URL associated with the text.
+
+        SearchResponse:
+            type: object
+            properties:
+                totalCount:
+                    type: integer
+                    description: The total number of items available.
+                items:
+                    type: array
+                    description: The list of items returned in the search.
+                    items:
+                        $ref: '#/components/schemas/SearchItem'
+        SearchItem:
+            type: object
+            properties:
+                id:
+                    type: string
+                    description: The unique identifier for the item.
+                name:
+                    type: string
+                    description: The name of the item.
+                description:
+                    type: string
+                    description: A brief description of the item.
+                metadata:
+                    $ref: '#/components/schemas/Metadata'
+        Metadata:
+            type: object
+            properties:
+                createdDate:
+                    type: string
+                    format: date-time
+                    description: The date and time when the item was created.
+                updatedDate:
+                    type: string
+                    format: date-time
+                    description: The date and time when the item was last updated.
+                tags:
+                    type: array
+                    description: The list of tags associated with the item.
+                    items:
+                        type: string
+
+
+        CreateDatabaseResponse:
+            type: object
+            properties:
+                created_time:
+                    type: string
+                    format: date-time
+                    example: "2025-01-19T16:27:00.000Z"
+                parent:
+                    $ref: '#/components/schemas/ParentObject'
+                in_trash:
+                    type: boolean
+                    example: false
+                icon:
+                    type: object
+                    nullable: true
+                description:
+                    type: array
+                    items: {}
+                title:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/TitleItem'
+                created_by:
+                    $ref: '#/components/schemas/UserObject'
+                url:
+                    type: string
+                    example: "https://www.notion.so/180f9eb15b47813c9e02c81cc8a7eeeb"
+                cover:
+                    type: object
+                    nullable: true
+                public_url:
+                    type: string
+                    nullable: true
+                archived:
+                    type: boolean
+                    example: false
+                last_edited_time:
+                    type: string
+                    format: date-time
+                    example: "2025-01-19T16:27:00.000Z"
+                is_inline:
+                    type: boolean
+                    example: false
+                id:
+                    type: string
+                    example: "180f9eb1-5b47-813c-9e02-c81cc8a7eeeb"
+                last_edited_by:
+                    $ref: '#/components/schemas/UserObject'
+                request_id:
+                    type: string
+                    example: "9f117bf9-1473-4c1f-a0d0-3f2cebe03cde"
+                properties:
+                    $ref: '#/components/schemas/PropertiesObject'
+
+        ParentObject:
+            type: object
+            properties:
+                type:
+                    type: string
+                    example: "page_id"
+                page_id:
+                    type: string
+                    example: "897df8e5-db92-4877-b1f0-238b499d61d4"
+
+        TitleItem:
+            type: object
+            properties:
+                type:
+                    type: string
+                    example: "text"
+                text:
+                    $ref: '#/components/schemas/TextObject'
+                annotations:
+                    $ref: '#/components/schemas/AnnotationsObject'
+                plain_text:
+                    type: string
+                    example: "Test database"
+                href:
+                    type: string
+                    nullable: true
+
+        TextObject:
+            type: object
+            properties:
+                content:
+                    type: string
+                    example: "Test database"
+                link:
+                    type: string
+                    nullable: true
+
+        AnnotationsObject:
+            type: object
+            properties:
+                bold:
+                    type: boolean
+                    example: false
+                italic:
+                    type: boolean
+                    example: false
+                strikethrough:
+                    type: boolean
+                    example: false
+                underline:
+                    type: boolean
+                    example: false
+                code:
+                    type: boolean
+                    example: false
+                color:
+                    type: string
+                    example: "default"
+
+        UserObject:
+            type: object
+            properties:
+                object:
+                    type: string
+                    example: "user"
+                id:
+                    type: string
+                    example: "03fc79ff-1a0e-4553-bb3b-895bd1be5ebf"
+
+        PropertiesObject:
+            type: object
+            properties:
+                Description:
+                    $ref: '#/components/schemas/PropertyObject'
+                Price:
+                    $ref: '#/components/schemas/PropertyObject'
+                Photo:
+                    $ref: '#/components/schemas/PropertyObject'
+                Last_ordered:
+                    $ref: '#/components/schemas/PropertyObject'
+                Food_group:
+                    $ref: '#/components/schemas/PropertyObject'
+                Store_availability:
+                    $ref: '#/components/schemas/PropertyObject'
+                In_stock:
+                    $ref: '#/components/schemas/PropertyObject'
+                Name:
+                    $ref: '#/components/schemas/PropertyObject'
+
+        PropertyObject:
+            type: object
+            properties:
+                id:
+                    type: string
+                    example: "%3Ez~e"
+                name:
+                    type: string
+                    example: "Description"
+                type:
+                    type: string
+                    example: "rich_text"
+                rich_text:
+                    type: object
+
+        CreateDatabaseRequest:
+            type: object
+            properties:
+                parent:
+                    type: object
+                    properties:
+                        type:
+                            type: string
+                            example: "page_id"
+                        page_id:
+                            type: string
+                            example: "{{PAGE_ID}}"
+                title:
+                    type: array
+                    items:
+                        type: object
+                        properties:
+                            type:
+                                type: string
+                                example: "text"
+                            text:
+                                type: object
+                                properties:
+                                    content:
+                                        type: string
+                                        example: "Grocery List"
+                                    link:
+                                        type: string
+                                        nullable: true
+                properties:
+                    type: object
+                    properties:
+                        Name:
+                            type: object
+                            properties:
+                                title:
+                                    type: object
+                                    additionalProperties: true
+                        Description:
+                            type: object
+                            properties:
+                                rich_text:
+                                    type: object
+                                    additionalProperties: true
+                        "In stock":
+                            type: object
+                            properties:
+                                checkbox:
+                                    type: object
+                                    additionalProperties: true
+                        "Food group":
+                            type: object
+                            properties:
+                                select:
+                                    type: object
+                                    properties:
+                                        options:
+                                            type: array
+                                            items:
+                                                type: object
+                                                properties:
+                                                    name:
+                                                        type: string
+                                                    color:
+                                                        type: string
+                            required:
+                                - select
+                        Price:
+                            type: object
+                            properties:
+                                number:
+                                    type: object
+                                    properties:
+                                        format:
+                                            type: string
+                                            example: "dollar"
+                            required:
+                                - number
+                        "Last ordered":
+                            type: object
+                            properties:
+                                date:
+                                    type: object
+                                    additionalProperties: true
+                        "Store availability":
+                            type: object
+                            properties:
+                                multi_select:
+                                    type: object
+                                    properties:
+                                        options:
+                                            type: array
+                                            items:
+                                                type: object
+                                                properties:
+                                                    name:
+                                                        type: string
+                                                    color:
+                                                        type: string
+                            required:
+                                - multi_select
+                        "+1":
+                            type: object
+                            properties:
+                                people:
+                                    type: object
+                                    additionalProperties: true
+                        Photo:
+                            type: object
+                            properties:
+                                files:
+                                    type: object
+                                    additionalProperties: true
+
+        CommentRequest:
+            type: object
+            properties:
+                parent:
+                    type: object
+                    properties:
+                        page_id:
+                            type: string
+                            example: "{{PAGE_ID}}"
+                rich_text:
+                    type: array
+                    items:
+                        type: object
+                        properties:
+                            text:
+                                type: object
+                                properties:
+                                    content:
+                                        type: string
+                                        example: "Hello world"
+
+        SearchRequest:
+            type: object
+            properties:
+                query:
+                    type: string
+                    example: "Media Article"
+                sort:
+                    type: object
+                    properties:
+                        direction:
+                            type: string
+                            enum: [ascending, descending]
+                            example: "ascending"
+                        timestamp:
+                            type: string
+                            enum: [last_edited_time]
+                            example: "last_edited_time"
+
+        Result:
+            type: object
+            properties:
+                object:
+                    type: string
+                id:
+                    type: string
+                created_time:
+                    type: string
+                    format: date-time
+                last_edited_time:
+                    type: string
+                    format: date-time
+                created_by:
+                    $ref: '#/components/schemas/User'
+                last_edited_by:
+                    $ref: '#/components/schemas/User'
+                cover:
+                    $ref: '#/components/schemas/Cover'
+                icon:
+                    $ref: '#/components/schemas/Icon'
+                parent:
+                    $ref: '#/components/schemas/Parent'
+                archived:
+                    type: boolean
+                properties:
+                    $ref: '#/components/schemas/Properties'
+                url:
+                    type: string
+        Cover:
+            type: object
+            properties:
+                type:
+                    type: string
+                external:
+                    $ref: '#/components/schemas/External'
+        External:
+            type: object
+            properties:
+                url:
+                    type: string
+        Icon:
+            type: object
+            properties:
+                type:
+                    type: string
+                emoji:
+                    type: string
+        Properties:
+            type: object
+            properties:
+                Store_availability:
+                    $ref: '#/components/schemas/StoreAvailability'
+                Food_group:
+                    $ref: '#/components/schemas/FoodGroup'
+                Price:
+                    $ref: '#/components/schemas/Price'
+                Responsible_Person:
+                    $ref: '#/components/schemas/ResponsiblePerson'
+                Last_ordered:
+                    $ref: '#/components/schemas/LastOrdered'
+                Cost_of_next_trip:
+                    $ref: '#/components/schemas/CostOfNextTrip'
+                Recipes:
+                    $ref: '#/components/schemas/Recipes'
+                Description:
+                    $ref: '#/components/schemas/Description'
+                In_stock:
+                    $ref: '#/components/schemas/InStock'
+                Number_of_meals:
+                    $ref: '#/components/schemas/NumberOfMeals'
+                Photo:
+                    $ref: '#/components/schemas/Photo'
+                Name:
+                    $ref: '#/components/schemas/Name'
+        StoreAvailability:
+            type: object
+            properties:
+                id:
+                    type: string
+                type:
+                    type: string
+                multi_select:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/Store'
+        Store:
+            type: object
+            properties:
+                id:
+                    type: string
+                name:
+                    type: string
+                color:
+                    type: string
+        FoodGroup:
+            type: object
+            properties:
+                id:
+                    type: string
+                type:
+                    type: string
+                select:
+                    $ref: '#/components/schemas/Select'
+        Select:
+            type: object
+            properties:
+                id:
+                    type: string
+                name:
+                    type: string
+                color:
+                    type: string
+        Price:
+            type: object
+            properties:
+                id:
+                    type: string
+                type:
+                    type: string
+                number:
+                    type: number
+        ResponsiblePerson:
+            type: object
+            properties:
+                id:
+                    type: string
+                type:
+                    type: string
+                people:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/Person'
+        PersonDetails:
+            type: object
+            properties:
+                email:
+                    type: string
+        LastOrdered:
+            type: object
+            properties:
+                id:
+                    type: string
+                type:
+                    type: string
+                date:
+                    $ref: '#/components/schemas/Date'
+        Date:
+            type: object
+            properties:
+                start:
+                    type: string
+                    format: date
+                end:
+                    type: string
+                    format: date
+                time_zone:
+                    type: string
+        CostOfNextTrip:
+            type: object
+            properties:
+                id:
+                    type: string
+                type:
+                    type: string
+                formula:
+                    $ref: '#/components/schemas/Formula'
+        Formula:
+            type: object
+            properties:
+                type:
+                    type: string
+                number:
+                    type: number
+        Recipes:
+            type: object
+            properties:
+                id:
+                    type: string
+                type:
+                    type: string
+                relation:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/Recipe'
+        Recipe:
+            type: object
+            properties:
+                id:
+                    type: string
+        Description:
+            type: object
+            properties:
+                id:
+                    type: string
+                type:
+                    type: string
+                rich_text:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/RichText'
+        Text:
+            type: object
+            properties:
+                content:
+                    type: string
+                link:
+                    type: string
+        InStock:
+            type: object
+            properties:
+                id:
+                    type: string
+                type:
+                    type: string
+                checkbox:
+                    type: boolean
+        NumberOfMeals:
+            type: object
+            properties:
+                id:
+                    type: string
+                type:
+                    type: string
+                rollup:
+                    $ref: '#/components/schemas/Rollup'
+        Rollup:
+            type: object
+            properties:
+                type:
+                    type: string
+                number:
+                    type: number
+                function:
+                    type: string
+        Photo:
+            type: object
+            properties:
+                id:
+                    type: string
+                type:
+                    type: string
+                url:
+                    type: string
+        Name:
+            type: object
+            properties:
+                id:
+                    type: string
+                type:
+                    type: string
+                title:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/Title'
+        Title:
+            type: object
+            properties:
+                type:
+                    type: string
+                text:
+                    $ref: '#/components/schemas/Text'
+
+        ArchivePageRequest:
+            type: object
+            properties:
+                archived:
+                    type: boolean
+                    example: true
+        DatabasePatchRequest:
+            type: object
+            properties:
+                title:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/TitleItem'
+                properties:
+                    type: object
+                    properties:
+                        "Wine Pairing":
+                            $ref: '#/components/schemas/WinePairing'
+        
+        WinePairing:
+            type: object
+            properties:
+                rich_text:
+                    type: object
+                    description: Placeholder for rich text content
+
+        PropertyItem:
+            type: object
+            properties:
+                object:
+                    type: string
+                    example: "property_item"
+                id:
+                    type: string
+                    example: "kjPO"
+                type:
+                    type: string
+                    example: "rich_text"
+                rich_text:
+                    type: object
+                    properties:
+                        type:
+                            type: string
+                            example: "text"
+                        text:
+                            type: object
+                            properties:
+                                content:
+                                    type: string
+                                    example: "Avocado "
+                                link:
+                                    type: string
+                                    nullable: true
+                                    example: null
+                        annotations:
+                            type: object
+                            properties:
+                                bold:
+                                    type: boolean
+                                    example: false
+                                italic:
+                                    type: boolean
+                                    example: false
+                                strikethrough:
+                                    type: boolean
+                                    example: false
+                                underline:
+                                    type: boolean
+                                    example: false
+                                code:
+                                    type: boolean
+                                    example: false
+                                color:
+                                    type: string
+                                    example: "default"
+                        plain_text:
+                            type: string
+                            example: "Avocado "
+                        href:
+                            type: string
+                            nullable: true
+                            example: null
+
+        RollupListPropertyItem:
+            type: object
+            description: Represents a list of rollup property items in the response.
+            properties:
+                object:
+                    type: string
+                    description: The object type, which is "list".
+                    example: "list"
+                results:
+                    type: array
+                    description: A list of rollup property items returned in the response.
+                    items:
+                        $ref: "#/components/schemas/PropertyItem"
+                next_cursor:
+                    type: string
+                    nullable: true
+                    description: A cursor for fetching the next set of results.
+                    example: "some-next-cursor-value"
+                has_more:
+                    type: boolean
+                    description: Indicates whether there are more results available.
+                    example: true
+                property_item:
+                    type: object
+                    description: Placeholder for any additional rollup-related details.
+                    properties:
+                        id:
+                            type: string
+                            description: The unique identifier for the property item.
+                            example: "y}~p"
+                        next_url:
+                            type: string
+                            nullable: true
+                            description: The next URL if available for pagination.
+                            example: "http://api.notion.com/v1/pages/0e5235bf86aa4efb93aa772cce7eab71/properties/y%7D~p?start_cursor=1QaTunT5&page_size=25"
+                        type:
+                            type: string
+                            description: The type of the property item.
+                            example: "rollup"
+                        rollup:
+                            type: object
+                            description: The rollup details for the property item.
+                            properties:
+                                function:
+                                    type: string
+                                    description: The aggregation function used in the rollup (e.g., "sum").
+                                    example: "sum"
+                                type:
+                                    type: string
+                                    description: The type of the rollup.
+                                    example: "incomplete"
+                                incomplete:
+                                    type: object
+                                    description: Placeholder for incomplete rollup details.
+
+        PropertyItemResult:
+            type: object
+            description: Represents a list of property items in the response.
+            properties:
+                object:
+                    type: string
+                    description: The object type, which is "list".
+                    example: "list"
+                results:
+                    type: array
+                    description: A list of property items returned in the response.
+                    items:
+                        $ref: "#/components/schemas/PropertyItem"
+                next_cursor:
+                    type: string
+                    nullable: true
+                    description: A cursor for fetching the next set of results.
+                    example: "some-next-cursor-value"
+                has_more:
+                    type: boolean
+                    description: Indicates whether there are more results available.
+                    example: true
+                next_url:
+                    type: string
+                    description: The URL for the next page of results.
+                    example: "http://api.notion.com/v1/pages/0e5235bf86aa4efb93aa772cce7eab71/properties/NVv^?start_cursor=some-next-cursor-value&page_size=25"
+                property_item:
+                    type: object
+                    description: Placeholder for any additional property item-related details.
+                    properties:
+                        id:
+                            type: string
+                            description: The unique identifier for the property item.
+                            example: "NVv^"
+                        next_url:
+                            type: string
+                            nullable: true
+                            description: The next URL if available for pagination.
+                            example: null
+                        type:
+                            type: string
+                            description: The type of the property item.
+                            example: "rich_text"
+                        rich_text:
+                            type: object
+                            description: The rich text details for the property item.
+                            properties:
+                                type:
+                                    type: string
+                                    description: The type of rich text (e.g., "text" or "mention").
+                                    example: "text"
+                                text:
+                                    type: object
+                                    description: The content of the rich text item.
+                                    properties:
+                                        content:
+                                            type: string
+                                            description: The content of the text.
+                                            example: "Avocado"
+                                        link:
+                                            type: string
+                                            nullable: true
+                                            description: The link associated with the text.
+                                            example: null
+                                annotations:
+                                    type: object
+                                    description: Annotations like bold, italic, etc.
+                                    properties:
+                                        bold:
+                                            type: boolean
+                                            description: Indicates if the text is bold.
+                                            example: false
+                                        italic:
+                                            type: boolean
+                                            description: Indicates if the text is italic.
+                                            example: false
+                                        strikethrough:
+                                            type: boolean
+                                            description: Indicates if the text is strikethrough.
+                                            example: false
+                                        underline:
+                                            type: boolean
+                                            description: Indicates if the text is underlined.
+                                            example: false
+                                        code:
+                                            type: boolean
+                                            description: Indicates if the text is in code format.
+                                            example: false
+                                        color:
+                                            type: string
+                                            description: The color of the text.
+                                            example: "default"
+                                plain_text:
+                                    type: string
+                                    description: The plain text content of the rich text.
+                                    example: "Avocado"
+                                href:
+                                    type: string
+                                    nullable: true
+                                    description: A URL associated with the rich text content.
+                                    example: null
+
+        NumberPropertyItem:
+            type: object
+            description: Represents a number property item with a unique ID and value.
+            properties:
+                object:
+                    type: string
+                    description: The object type, which is "property_item".
+                    example: "property_item"
+                id:
+                    type: string
+                    description: The unique identifier for the property item.
+                    example: "kjPO"
+                type:
+                    type: string
+                    description: The type of the property item, which is "number" in this case.
+                    example: "number"
+                number:
+                    type: integer
+                    description: The numerical value for the property item.
+                    example: 2
+
+        CommentResponse:
+            type: object
+            description: Represents the response for retrieving comments.
+            properties:
+                object:
+                    type: string
+                    description: The object type, which is "list" in this case.
+                    example: "list"
+                results:
+                    type: array
+                    description: A list of comments returned in the response.
+                    items:
+                        $ref: "#/components/schemas/Comment"
+                next_cursor:
+                    type: string
+                    nullable: true
+                    description: A cursor for fetching the next set of results. If null, there are no more results.
+                    example: null
+                has_more:
+                    type: boolean
+                    description: Indicates whether there are more results available.
+                    example: false
+                type:
+                    type: string
+                    description: The type of object in the list, which is "comment" in this case.
+                    example: "comment"
+                comment:
+                    type: object
+                    description: Placeholder for any additional comment-related details or future extensions.
+
+        Comment:
+            type: object
+            description: Represents a comment object.
+            properties:
+                object:
+                    type: string
+                    description: The object type, which is "comment".
+                    example: "comment"
+                id:
+                    type: string
+                    format: uuid
+                    description: The unique identifier for the comment.
+                    example: "94cc56ab-9f02-409d-9f99-1037e9fe502f"
+                parent:
+                    $ref: "#/components/schemas/Parent"
+                discussion_id:
+                    type: string
+                    format: uuid
+                    description: The unique identifier for the discussion the comment belongs to.
+                    example: "f1407351-36f5-4c49-a13c-49f8ba11776d"
+                created_time:
+                    type: string
+                    format: date-time
+                    description: The timestamp when the comment was created.
+                    example: "2022-07-15T16:52:00.000Z"
+                last_edited_time:
+                    type: string
+                    format: date-time
+                    description: The timestamp when the comment was last edited.
+                    example: "2022-07-15T19:16:00.000Z"
+                created_by:
+                    $ref: "#/components/schemas/UserReference"
+                rich_text:
+                    type: array
+                    description: An array of rich text objects for the comment's content.
+                    items:
+                        $ref: "#/components/schemas/RichText"
+        
+        Parent:
+            type: object
+            description: The parent information for the comment.
+            properties:
+                type:
+                    type: string
+                    description: The type of parent, which is "page_id" in this case.
+                    example: "page_id"
+                page_id:
+                    type: string
+                    format: uuid
+                    description: The unique identifier for the parent page.
+                    example: "5c6a2821-6bb1-4a7e-b6e1-c50111515c3d"
+
+        UserReference:
+            type: object
+            description: Reference to the user who created the comment.
+            properties:
+                object:
+                    type: string
+                    description: The object type, which is "user".
+                    example: "user"
+                id:
+                    type: string
+                    format: uuid
+                    description: The unique identifier for the user.
+                    example: "9b15170a-9941-4297-8ee6-83fa7649a87a"
+
+        BlockResponse:
+            type: object
+            description: Represents the response for a delete block operation.
+            properties:
+                object:
+                    type: string
+                    description: The object type, which is "block" in this case.
+                    example: "block"
+                id:
+                    type: string
+                    format: uuid
+                    description: The unique identifier for the block.
+                    example: "7985540b-2e77-4ac6-8615-c3047e36f872"
+                parent:
+                    $ref: "#/components/schemas/Parent"
+                created_time:
+                    type: string
+                    format: date-time
+                    description: The timestamp when the block was created.
+                    example: "2022-07-06T19:52:00.000Z"
+                last_edited_time:
+                    type: string
+                    format: date-time
+                    description: The timestamp when the block was last edited.
+                    example: "2022-07-06T19:52:00.000Z"
+                created_by:
+                    $ref: "#/components/schemas/UserReference"
+                last_edited_by:
+                    $ref: "#/components/schemas/UserReference"
+                has_children:
+                    type: boolean
+                    description: Indicates whether the block has any child elements.
+                    example: false
+                archived:
+                    type: boolean
+                    description: Indicates whether the block is archived.
+                    example: true
+                type:
+                    type: string
+                    description: The type of block, in this case, "paragraph".
+                    example: "paragraph"
+                paragraph:
+                    $ref: "#/components/schemas/Paragraph"
+        
+        Paragraph:
+            type: object
+            description: Details of the paragraph block, including the rich text content.
+            properties:
+                rich_text:
+                    type: array
+                    description: List of rich text elements in the paragraph.
+                    items:
+                        type: object
+                        description: Rich text element details (can be expanded if required).
+                        properties: {}
+                color:
+                    type: string
+                    description: The color of the paragraph block.
+                    example: "default"
+        BotUserTokenResponse:
+            description: Response containing bot user token details.
+            type: object
+            properties:
+                object:
+                    type: string
+                    description: The object type, which in this case is a user.
+                    example: "user"
+                id:
+                    type: string
+                    format: uuid
+                    description: The unique identifier for the user.
+                    example: "16d84278-ab0e-484c-9bdd-b35da3bd8905"
+                name:
+                    type: string
+                    description: The name of the bot user.
+                    example: "pied piper"
+                avatar_url:
+                    type: string
+                    nullable: true
+                    description: URL of the avatar image associated with the bot user.
+                    example: null
+                type:
+                    type: string
+                    description: The type of the entity, which is "bot" in this case.
+                    example: "bot"
+                bot:
+                    $ref: "#/components/schemas/Bot"
+                    
+        Bot:
+            type: object
+            description: Details of the bot user.
+            properties:
+                owner:
+                    $ref: "#/components/schemas/Owner"
+                    
+        Owner:
+            type: object
+            description: Information about the owner of the bot user.
+            properties:
+                type:
+                    type: string
+                    description: The type of the owner, which is "user".
+                    example: "user"
+                user:
+                    $ref: "#/components/schemas/BotUser"
+                    
+        BotUser:
+            type: object
+            description: Information about the associated user.
+            properties:
+                object:
+                    type: string
+                    description: The object type of the associated user.
+                    example: "user"
+                id:
+                    type: string
+                    format: uuid
+                    description: The unique identifier for the associated user.
+                    example: "5389a034-eb5c-47b5-8a9e-f79c99ef166c"
+                name:
+                    type: string
+                    description: The name of the associated user.
+                    example: "christine makenotion"
+                avatar_url:
+                    type: string
+                    nullable: true
+                    description: URL of the avatar image associated with the user.
+                    example: null
+                type:
+                    type: string
+                    description: The type of the associated entity, which is "person".
+                    example: "person"
+                person:
+                    $ref: "#/components/schemas/Person"
+                    
+        Person:
+            type: object
+            description: Information about the person associated with the user.
+            properties:
+                email:
+                    type: string
+                    format: email
+                    description: The email address of the associated person.
+                    example: "christine@makenotion.com"
+
+        SearchBody:
+            description: Search request body parameters
+            properties:
+                query:
+                    type: string
+                    description: When supplied, limits which pages are returned by comparing the query to the page title
+                sort:
+                    $ref: "#/components/schemas/Sorting"
+                filter:
+                    $ref: "#/components/schemas/Filtering"
+                start_cursor:
+                    type: string
+                    description: If supplied, this endpoint will return a page of results starting after the cursor provided or else this endpoint will return the first page of results
+                page_size:
+                    type: integer
+                    description: The number of items from the full list desired in the response. Maximum- 100
+        Sorting:
+            description: When supplied, sorts the results based on the provided criteria
+            properties:
+                direction:
+                    description: The direction to sort. Possible values include ascending and descending
+                    type: string
+                timestamp:
+                    description: The name of the timestamp to sort against. Possible values include last_edited_time
+                    type: string
+        Filtering:
+            description: When supplied, filters the results based on the provided criteria
+            properties:
+                value:
+                    description: The value of the property to filter the results by and Possible values for object type include page or database
+                    type: string
+                property:
+                    description: The name of the property to filter by.
+                    type: string
+        PaginatedUsers:
+            description: The response body for users list
+            properties:
+                results:
+                    description: Array of Users
+                    type: array
+                    items:
+                        $ref: "#/components/schemas/User"
+                next_cursor:
+                    type: string
+                    nullable: true
+                    description: Next curser position of the user list
+                has_more:
+                    type: boolean
+                    description: Indicates whether there are more user records or not
+        PageUpdateRequestBody:
+            description: The request body for page update
+            properties:
+                children:
+                    description: "Children pages"
+                    items:
+                        description: "page items"
+                        properties:
+                            heading_2:
+                                description: "Page heading"
+                                properties:
+                                    text:
+                                        description: "Page text"
+                                        items:
+                                            description: "Page text items"
+                                            properties:
+                                                text:
+                                                    description: "Text value"
+                                                    properties:
+                                                        content:
+                                                            description: "Text content"
+                                                            example: Lacinato kale
+                                                            type: string
+                                                    type: object
+                                                type:
+                                                    description: The type of the object
+                                                    example: text
+                                                    type: string
+                                            type: object
+                                        type: array
+                                type: object
+                            object:
+                                description: The page object "block"
+                                example: block
+                                type: string
+                            type:
+                                description: The type of the object
+                                example: heading_2
+                                type: string
+                        type: object
+                    type: array
+            type: object
+        PaginatedDatabases:
+            description: The response body for users list
+            properties:
+                results:
+                    description: Array of Users
+                    type: array
+                    items:
+                        $ref: "#/components/schemas/Database"
+                next_cursor:
+                    type: string
+                    nullable: true
+                    description: Next curser position of the user list
+                has_more:
+                    type: boolean
+                    description: Indicates whether there are more user records or not
+        ObjectProperties:
+            description: Object Properties
+            properties:
+                Author:
+                    description: Author of the database
+                    properties:
+                        id:
+                            description: Author ID
+                            example: qNw_
+                            type: string
+                        multi_select:
+                            description: multi_select values
+                            properties:
+                                options:
+                                    description: The multi_select option
+                                    items:
+                                        description: The option items
+                                        properties:
+                                            color:
+                                                description: Color of the database
+                                                example: default
+                                                type: string
+                                            id:
+                                                description: ID of the database
+                                                example: 15592971-7b30-43d5-9406-2eb69b13fcae
+                                                type: string
+                                            name:
+                                                description: Name of the Database
+                                                example: Spencer Greenberg
+                                                type: string
+                                        type: object
+                                    type: array
+                            type: object
+                        type:
+                            description: The type of the object
+                            example: multi_select
+                            type: string
+                    type: object
+                Link:
+                    description: Related links
+                    properties:
+                        id:
+                            description: Link ID
+                            example: VVMi
+                            type: string
+                        type:
+                            description: Link type
+                            example: url
+                            type: string
+                        url:
+                            description: URL
+                            properties: {}
+                            type: object
+                    type: object
+                Name:
+                    description: The name of the object
+                    properties:
+                        id:
+                            description: Name ID
+                            example: title
+                            type: string
+                        title:
+                            description: tilte
+                            properties: {}
+                            type: object
+                        type:
+                            description: title Type
+                            example: title
+                            type: string
+                    type: object
+                Publisher:
+                    description: Publisher Detail
+                    properties:
+                        id:
+                            description: Publisher ID
+                            example: ">$Pb"
+                            type: string
+                        select:
+                            description: Select details of publisher
+                            properties:
+                                options:
+                                    description: The set of options
+                                    items:
+                                        description: The set of items in options
+                                        properties:
+                                            color:
+                                                description: The color
+                                                example: default
+                                                type: string
+                                            id:
+                                                description: The ID of the option
+                                                example: c5ee409a-f307-4176-99ee-6e424fa89afa
+                                                type: string
+                                            name:
+                                                description: The name of the option
+                                                example: NYT
+                                                type: string
+                                        type: object
+                                    type: array
+                            type: object
+                        type:
+                            description: The type of the object
+                            example: select
+                            type: string
+                    type: object
+                Publishing/Release Date:
+                    description: Publishing/Releasing Date
+                    properties:
+                        date:
+                            description: The date of publishing/release
+                            properties: {}
+                            type: object
+                        id:
+                            description: ID of date
+                            example: ?ex+
+                            type: string
+                        type:
+                            description: Type of the object
+                            example: date
+                            type: string
+                    type: object
+                Read:
+                    description: Read details
+                    properties:
+                        checkbox:
+                            description: checkbox details
+                            properties: {}
+                            type: object
+                        id:
+                            description: ID of the checkbox
+                            example: _MWJ
+                            type: string
+                        type:
+                            description: The object type
+                            example: checkbox
+                            type: string
+                    type: object
+                Status:
+                    description: The status ID
+                    properties:
+                        id:
+                            description: The ID of the status
+                            example: "`zz5"
+                            type: string
+                        select:
+                            description: Select details of publisher
+                            properties:
+                                options:
+                                    description: The set of options
+                                    items:
+                                        description: The set of items in options
+                                        properties:
+                                            color:
+                                                description: The color
+                                                example: default
+                                                type: string
+                                            id:
+                                                description: The ID of the option
+                                                example: c5ee409a-f307-4176-99ee-6e424fa89afa
+                                                type: string
+                                            name:
+                                                description: The name of the option
+                                                example: NYT
+                                                type: string
+                                        type: object
+                                    type: array
+                            type: object
+                        type:
+                            description: The object type
+                            example: select
+                            type: string
+                    type: object
+                Summary:
+                    description: The summary of the database
+                    properties:
+                        id:
+                            description: The ID of the summary
+                            example: ?\25
+                            type: string
+                        text:
+                            description: The summary content
+                            properties: {}
+                            type: object
+                        type:
+                            description: The type of the object
+                            example: text
+                            type: string
+                    type: object
+                Type:
+                    description: The database type details
+                    properties:
+                        id:
+                            description: The type ID
+                            example: /7eo
+                            type: string
+                        select:
+                            description: Select details of publisher
+                            properties:
+                                options:
+                                    description: The set of options
+                                    items:
+                                        description: The set of items in options
+                                        properties:
+                                            color:
+                                                description: The color
+                                                example: default
+                                                type: string
+                                            id:
+                                                description: The ID of the option
+                                                example: c5ee409a-f307-4176-99ee-6e424fa89afa
+                                                type: string
+                                            name:
+                                                description: The name of the option
+                                                example: NYT
+                                                type: string
+                                        type: object
+                                    type: array
+                            type: object
+                        type:
+                            description: The object type
+                            example: select
+                            type: string
+                    type: object
+            type: object
+        ResultDetails:
+            description: Result Details
+            properties:
+                created_time:
+                    description: The created date/time
+                    example: 2021-04-27T20:38:19.437Z
+                    type: string
+                has_children:
+                    description: Indicates whether it has child object or not
+                    example: false
+                    type: boolean
+                id:
+                    description: Object ID
+                    example: 48c1ffb5-2789-4025-937b-2c35eaaaab3f
+                    type: string
+                last_edited_time:
+                    description: The last date/time
+                    example: 2021-04-27T20:38:19.437Z
+                    type: string
+                object:
+                    description: Object Category
+                    example: block
+                    type: string
+                type:
+                    example: unsupported
+                    type: string
+                    description: object type
+                unsupported:
+                    properties: {}
+                    type: object
+                    description: Unsupported
+            type: object
+        BlockChildrenResponse:
+            description: The response for block children
+            properties:
+                has_more:
+                    description: Indicates whether it has more objects or not
+                    example: false
+                    type: boolean
+                next_cursor:
+                    description: Incidates the position of the response list
+                    example: null
+                    nullable: true
+                object:
+                    description: The response object
+                    example: list
+                    type: string
+                results:
+                    description: The array of result details
+                    items:
+                        $ref: "#/components/schemas/ResultDetails"
+                    type: array
+            type: object
+        Database:
+            description: The database object
+            properties:
+                created_time:
+                    description: The created date/time
+                    example: 2021-04-27T20:38:19.437Z
+                    type: string
+                id:
+                    description: Database ID
+                    example: 8e2c2b76-9e1d-47d2-87b9-ed3035d607ae
+                    type: string
+                last_edited_time:
+                    description: The last edited date/time
+                    example: 2021-04-27T21:15:00.000Z
+                    type: string
+                object:
+                    description: Object type "database"
+                    example: database
+                    type: string
+                properties:
+                    $ref: "#/components/schemas/ObjectProperties"
+                title:
+                    description: Title of the database
+                    items:
+                        description: The item sets
+                        properties:
+                            annotations:
+                                description: The annotation
+                                properties:
+                                    bold:
+                                        description: Indicates whether the title is bold or not
+                                        example: false
+                                        type: boolean
+                                    code:
+                                        description: Indicates whether the title is code or not
+                                        example: false
+                                        type: boolean
+                                    color:
+                                        description: Indicates whether the title is color or not
+                                        example: default
+                                        type: string
+                                    italic:
+                                        description: Indicates whether the title is italic or not
+                                        example: false
+                                        type: boolean
+                                    strikethrough:
+                                        description: Indicates whether the title is strikethrough or not
+                                        example: false
+                                        type: boolean
+                                    underline:
+                                        description: Indicates whether the title is underline or not
+                                        example: false
+                                        type: boolean
+                                type: object
+                            href:
+                                description: HyperLink
+                                example: null
+                                nullable: true
+                            plain_text:
+                                description: Plain text
+                                example: Media
+                                type: string
+                            text:
+                                description: The text detail
+                                properties:
+                                    content:
+                                        description: The text content
+                                        example: Media
+                                        type: string
+                                    link:
+                                        description: The link to the text
+                                        example: null
+                                        nullable: true
+                                type: object
+                            type:
+                                description: The type of the object
+                                example: text
+                                type: string
+                        type: object
+                    type: array
+            type: object
+        DatabaseContent:
+            description: Database content
+            properties:
+                filter:
+                    description: Filter detail
+                    properties:
+                        or:
+                            description: The filter set
+                            items:
+                                description: The filter item
+                                properties:
+                                    property:
+                                        description: The filter property
+                                        example: Status
+                                        type: string
+                                    select:
+                                        description: The select details
+                                        properties:
+                                            equals:
+                                                description: The equals values
+                                                example: Reading
+                                                type: string
+                                        type: object
+                                type: object
+                            type: array
+                    type: object
+                sorts:
+                    description: Sorting details
+                    items:
+                        description: Sort items
+                        properties:
+                            direction:
+                                description: The sort direction
+                                example: ascending
+                                type: string
+                            property:
+                                description: The sort property
+                                example: Score /5
+                                type: string
+                        type: object
+                    type: array
+            type: object
+        DatabaseResponse:
+            description: Database response content
+            properties:
+                has_more:
+                    description: Indicates whether has more objects
+                    example: false
+                    type: boolean
+                next_cursor:
+                    description: The next position of the result
+                    example: null
+                    nullable: true
+                object:
+                    description: Object Type "list"
+                    example: list
+                    type: string
+                results:
+                    description: Database results
+                    items:
+                        description: The databases
+                        properties:
+                            archived:
+                                description: Indicates whether the database is archived or not
+                                example: false
+                                type: boolean
+                            created_time:
+                                description: Indicates whether the database is archived or not
+                                example: 2021-04-27T20:38:19.437Z
+                                type: string
+                            id:
+                                description: The ID of the database
+                                example: 557ef501-bfdb-4586-918e-4434f31bca8c
+                                type: string
+                            last_edited_time:
+                                description: The last edited time
+                                example: 2021-04-27T20:38:19.437Z
+                                type: string
+                            object:
+                                description: The object type "page"
+                                example: page
+                                type: string
+                            parent:
+                                description: The parent database
+                                properties:
+                                    database_id:
+                                        description: Database ID
+                                        example: 8e2c2b76-9e1d-47d2-87b9-ed3035d607ae
+                                        type: string
+                                    type:
+                                        description: The type of object
+                                        example: database_id
+                                        type: string
+                                type: object
+                            properties:
+                                $ref: "#/components/schemas/ObjectProperties"
+                    type: array
+            type: object
+        PageResponse:
+            description: Page Details
+            properties:
+                archived:
+                    description: Indicates whether it is archived or not
+                    example: false
+                    type: boolean
+                created_time:
+                    description: The created date/time
+                    example: 2021-04-27T20:38:19.437Z
+                    type: string
+                id:
+                    description: ID of the page
+                    example: a1712d54-53e4-4893-a69d-4d581cd2c845
+                    type: string
+                last_edited_time:
+                    description: The last edited date/time
+                    example: 2021-04-27T20:38:19.437Z
+                    type: string
+                object:
+                    description: The object type "page"
+                    example: page
+                    type: string
+                parent:
+                    description: Parent Page
+                    properties:
+                        database_id:
+                            description: Database ID
+                            example: 8e2c2b76-9e1d-47d2-87b9-ed3035d607ae
+                            type: string
+                        type:
+                            description: The type of the object
+                            example: database_id
+                            type: string
+                    type: object
+                properties:
+                    $ref: "#/components/schemas/PageObjectProperties"
+            type: object
+        PageContent:
+            description: Page content
+            properties:
+                properties:
+                    description: Page properties
+                    properties:
+                        Status:
+                            description: Status properties
+                            properties:
+                                select:
+                                    description: Select properties
+                                    properties:
+                                        name:
+                                            description: page content name
+                                            example: Reading
+                                            type: string
+                                    type: object
+                            type: object
+                    type: object
+            type: object
+        PageUpdatedProperties:
+            description: The page content after update
+            properties:
+                archived:
+                    description: Indicates whether it is archived or not
+                    example: false
+                    type: boolean
+                created_time:
+                    description: The created date/time
+                    example: 2021-04-27T20:38:19.437Z
+                    type: string
+                id:
+                    description: The ID of the Page
+                    example: a1712d54-53e4-4893-a69d-4d581cd2c845
+                    type: string
+                last_edited_time:
+                    description: The last edited date/time
+                    example: 2021-04-28T23:12:53.160Z
+                    type: string
+                object:
+                    description: The object type "page"
+                    example: page
+                    type: string
+                properties:
+                    $ref: "#/components/schemas/ObjectProperties"
+            type: object
+        User:
+            description: User detail
+            properties:
+                avatar_url:
+                    description: avatar URL
+                    example: null
+                    nullable: true
+                id:
+                    description: User ID
+                    example: 6794760a-1f15-45cd-9c65-0dfe42f5135a
+                    type: string
+                name:
+                    description: Name of the User
+                    example: Aman Gupta
+                    type: string
+                object:
+                    description: The object type User
+                    example: user
+                    type: string
+                person:
+                    description: The contact detail
+                    properties:
+                        email:
+                            description: Email address
+                            example: XXXXXXX@makenotion.com
+                            type: string
+                    type: object
+                type:
+                    description: The object type
+                    example: person
+                    type: string
+            type: object
+        PageProperties:
+            description: Page properties
+            properties:
+                name:
+                    description: The ID of the property
+                    type: string
+                type:
+                    type: string
+                    description: Type of the property
+            type: object
+        DatabaseTitle:
+            description: Page properties
+            properties:
+                plain_text:
+                    description: The plain text without annotations
+                    type: string
+                href:
+                    description: The URL of any link or internal Notion mention in this text, if any
+                    type: string
+                type:
+                    type: string
+                    description: Type of this rich text object. Possible values are- "text", "mention", "equation"
+                annotation:
+                    $ref: "#/components/schemas/Annotations"
+            type: object
+        Annotations:
+            description: Style information which applies to the whole rich text object
+            properties:
+                bold:
+                    type: boolean
+                    description: Whether the text is bolded
+                italic:
+                    type: boolean
+                    description: Whether the text is italic
+                strikethrough:
+                    type: boolean
+                    description: Whether the text is struck through
+                underline:
+                    type: boolean
+                    description: Whether the text is underlined
+                code:
+                    type: boolean
+                    description: Whether the text is "code style"
+                color:
+                    type: string
+                    description: Color of the text. Possible values are- "default", "gray", "brown", "orange", "yellow", "green", "blue", "purple", "pink", "red", "gray_background", "brown_background", "orange_background", "yellow_background", "green_background", "blue_background", "purple_background", "pink_background", "red_background"
+        DatabaseParent:
+            description: Parent Page Detail
+            properties:
+                page_id:
+                    description: Database ID
+                    type: string
+            type: object
+        PageChildren:
+            description: Page content for the new page
+            type: array
+            items:
+                type: object
+                description: Page content for the new pag
+                properties:
+                    object:
+                        description: Always "block"
+                        type: string
+                        default: "block"
+                    type:
+                        description: Type of block
+                        type: string
+                    paragraph:
+                        $ref: "#/components/schemas/blockContent"
+                    heading_1:
+                        $ref: "#/components/schemas/blockContent"
+                    heading_2:
+                        $ref: "#/components/schemas/blockContent"
+                    heading_3:
+                        $ref: "#/components/schemas/blockContent"
+                    bulleted_list_item:
+                        $ref: "#/components/schemas/blockContent"
+                    numbered_list_item:
+                        $ref: "#/components/schemas/blockContent"
+                    to_do:
+                        $ref: "#/components/schemas/blockContent"
+                    child_page:
+                        $ref: "#/components/schemas/blockContent"
+        PageBodyParams:
+            description: PageDetail
+            properties:
+                properties:
+                    $ref: "#/components/schemas/PageProperties"
+                parent:
+                    $ref: "#/components/schemas/PageParent"
+                children:
+                    $ref: "#/components/schemas/PageChildren"
+        DatabaseBodyParams:
+            description: DatabaseDetails
+            properties:
+                properties:
+                    description: Property schema of database
+                    $ref: "#/components/schemas/DatabaseProperties"
+                parent:
+                    description: A page parent
+                    $ref: "#/components/schemas/DatabaseParent"
+                title:
+                    description: Property schema of database
+                    type: array
+                    items:
+                        $ref: "#/components/schemas/DatabaseTitle"
+        DatabaseProperties:
+            description: Property schema of database. The keys are the names of properties as they appear in Notion and the values are property schema objects
+            properties:
+                title:
+                    type: string
+                    description: Each database must have exactly one database property schema object of type "title". This database property controls the title that appears at the top of the page when the page is opened.
+                rich_text:
+                    type: string
+                    description: Text database property schema objects
+                number:
+                    description: Number database property schema object
+                    type: object
+                    properties:
+                        format:
+                            description: How the number is displayed in Notion. Potential values include- number, number_with_commas, percent, dollar, euro, pound, yen, ruble, rupee, won, yuan
+                            type: string
+                select:
+                    description: Select database property schema object
+                    $ref: "#/components/schemas/SelectOptions"
+                multi_select:
+                    type: array
+                    description: Multi-select database property schema object
+                    items:
+                        $ref: "#/components/schemas/SelectOptions"
+                date:
+                    type: string
+                    description: Date database property schema
+                people:
+                    type: string
+                    description: People database property schema
+                files:
+                    type: string
+                    description: File database property schema object
+                checkbox:
+                    type: string
+                    description: Checkbox database property schema object
+                url:
+                    type: string
+                    description: URL database property schema object
+                email:
+                    type: string
+                    description: Email database property schema object
+                phone_number:
+                    type: string
+                    description: Phone number database property schema object
+                last_edited_time:
+                    type: string
+                    description: Last edited time database property schema object
+                last_edited_by:
+                    type: string
+                    description: Last edited by database property schema object
+                created_time:
+                    type: string
+                    description: Created time database property schema object
+                created_by:
+                    type: string
+                    description: Created by database property schema object
+        SelectOptions:
+            description: Select option
+            type: object
+            properties:
+                name:
+                    type: string
+                    description: Name of the option as it appears in Notion
+                color:
+                    type: string
+                    description: Color of the option. Possible values include- default, gray, brown, orange, yellow, green, blue, purple, pink, red
+        blockContent:
+            description: Block content
+            type: object
+            properties:
+                text:
+                    description: block objects
+                    type: array
+                    items:
+                        type: object
+                        properties:
+                            text:
+                                description: block objects
+                                type: array
+                                items:
+                                    $ref: "#/components/schemas/blockContent"
+                            children:
+                                description: Any nested children blocks
+                                type: array
+                                items:
+                                    $ref: "#/components/schemas/blockContent"
+                            checked:
+                                description: Whether the to_do is checked or not
+                                type: boolean
+                            content:
+                                description: Content of a block element
+                                type: string
 security:
     - bearerAuth: []
 tags:
@@ -386,7 +2776,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                type: object
+                                $ref: "#/components/schemas/User"
                             example:
                                 object: user
                                 id: 6794760a-1f15-45cd-9c65-0dfe42f5135a
@@ -626,7 +3016,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                type: object
+                                $ref: "#/components/schemas/PaginatedUsers"
                             example:
                                 object: list
                                 results:
@@ -878,7 +3268,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                type: object
+                                $ref: "#/components/schemas/BotUserTokenResponse"
                             example:
                                 object: user
                                 id: 92a680bb-6970-4726-952b-4f4c03bff617
@@ -1126,7 +3516,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                type: object
+                                $ref: "#/components/schemas/Database"
                             example:
                                 object: database
                                 id: 8e2c2b76-9e1d-47d2-87b9-ed3035d607ae
@@ -1322,7 +3712,7 @@ paths:
                 content:
                     application/json:
                         schema:
-                            type: object
+                            $ref: "#/components/schemas/DatabasePatchRequest"
                             example:
                                 properties:
                                     Wine Pairing:
@@ -1558,7 +3948,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                type: object
+                                $ref: "#/components/schemas/Database"
                             examples:
                                 example-0:
                                     summary: 200 Success - Update a Database
@@ -1957,7 +4347,7 @@ paths:
                 content:
                     application/json:
                         schema:
-                            type: object
+                            $ref: "#/components/schemas/DatabaseContent"
                             example:
                                 filter:
                                     property: Status
@@ -2204,7 +4594,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                type: object
+                                $ref: "#/components/schemas/DatabaseQueryResponse"
                             examples:
                                 example-0:
                                     summary: 200 Success - Query a Database (OR)
@@ -2887,53 +5277,7 @@ paths:
                 content:
                     application/json:
                         schema:
-                            type: object
-                            example:
-                                parent:
-                                    type: page_id
-                                    page_id: "{{PAGE_ID}}"
-                                title:
-                                    - type: text
-                                      text:
-                                          content: Grocery List
-                                          link: null
-                                properties:
-                                    Name:
-                                        title: {}
-                                    Description:
-                                        rich_text: {}
-                                    In stock:
-                                        checkbox: {}
-                                    Food group:
-                                        select:
-                                            options:
-                                                - name: 🥦Vegetable
-                                                  color: green
-                                                - name: 🍎Fruit
-                                                  color: red
-                                                - name: 💪Protein
-                                                  color: yellow
-                                    Price:
-                                        number:
-                                            format: dollar
-                                    Last ordered:
-                                        date: {}
-                                    Store availability:
-                                        type: multi_select
-                                        multi_select:
-                                            options:
-                                                - name: Duc Loi Market
-                                                  color: blue
-                                                - name: Rainbow Grocery
-                                                  color: gray
-                                                - name: Nijiya Market
-                                                  color: purple
-                                                - name: Gus's Community Market
-                                                  color: yellow
-                                    "+1":
-                                        people: {}
-                                    Photo:
-                                        files: {}
+                            $ref: "#/components/schemas/CreateDatabaseRequest"
             parameters:
                 - name: Content-Type
                   in: header
@@ -3164,7 +5508,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                type: object
+                                $ref: "#/components/schemas/CreateDatabaseResponse"
                             example:
                                 object: database
                                 id: 23cde96c-0ad8-41d8-bfa2-b477c63dd52a
@@ -3276,7 +5620,7 @@ paths:
                 content:
                     application/json:
                         schema:
-                            type: object
+                            $ref: "#/components/schemas/PageResponse"
                             example:
                                 parent:
                                     database_id: "{{DATABASE_ID}}"
@@ -3591,7 +5935,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                type: object
+                                $ref: "#/components/schemas/PageResponse"
                             example:
                                 object: page
                                 id: 672b014a-2626-4ada-9211-fb3613d07ae2
@@ -3942,7 +6286,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                type: object
+                                $ref: "#/components/schemas/PageResponse"
                             example:
                                 object: page
                                 id: c4d39556-6364-46a1-8a61-ebbb668f7445
@@ -3990,7 +6334,7 @@ paths:
                 content:
                     application/json:
                         schema:
-                            type: object
+                            $ref: "#/components/schemas/ArchivePageRequest"
                             example:
                                 archived: true
             parameters:
@@ -4224,7 +6568,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                type: object
+                                $ref: "#/components/schemas/PageUpdatedProperties"
                             example:
                                 object: block
                                 id: 2646ac0d-df90-4bab-bb4e-75e3cb972ed1
@@ -4482,7 +6826,10 @@ paths:
                     content:
                         application/json:
                             schema:
-                                type: object
+                                oneOf:
+                                    - $ref: "#/components/schemas/RollupListPropertyItem"
+                                    - $ref: "#/components/schemas/PropertyItemResult"
+                                    - $ref: "#/components/schemas/NumberPropertyItem"
                             example:
                                 object: property_item
                                 type: select
@@ -4709,7 +7056,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                type: object
+                                $ref: "#/components/schemas/BlockChildrenResponse"
                             example:
                                 object: list
                                 results:
@@ -5698,7 +8045,7 @@ paths:
                 content:
                     application/json:
                         schema:
-                            type: object
+                            $ref: "#/components/schemas/ChildBlockContent"
                             example:
                                 children:
                                     - object: block
@@ -5944,7 +8291,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                type: object
+                                $ref: "#/components/schemas/ChildBlockContent"
                             example:
                                 object: block
                                 id: a1712d54-53e4-4893-a69d-4d581cd2c845
@@ -5966,7 +8313,7 @@ paths:
                 content:
                     application/json:
                         schema:
-                            type: object
+                            $ref: "#/components/schemas/Paragraph"
                             example:
                                 paragraph:
                                     rich_text:
@@ -6199,7 +8546,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                type: object
+                                $ref: "#/components/schemas/BlockResponse"
                             example:
                                 object: block
                                 id: 4868767d-9029-4b9d-a41b-652ef4c9c7b9
@@ -6452,7 +8799,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                type: object
+                                $ref: "#/components/schemas/BlockResponse"
                             example:
                                 object: block
                                 id: 4868767d-9029-4b9d-a41b-652ef4c9c7b9
@@ -6710,7 +9057,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                type: object
+                                $ref: "#/components/schemas/BlockResponse"
                             example:
                                 object: block
                                 id: 4868767d-9029-4b9d-a41b-652ef4c9c7b9
@@ -6749,7 +9096,7 @@ paths:
                 content:
                     application/json:
                         schema:
-                            type: object
+                            $ref: "#/components/schemas/SearchRequest"
                             example:
                                 query: Media Article
                                 sort:
@@ -6985,7 +9332,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                type: object
+                                $ref: "#/components/schemas/SearchResponse"
                             examples:
                                 example-0:
                                     summary: 200 Success - Search
@@ -8918,7 +11265,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                type: object
+                                $ref: "#/components/schemas/CommentResponse"
                             example:
                                 object: list
                                 results:
@@ -9014,7 +11361,7 @@ paths:
                 content:
                     application/json:
                         schema:
-                            type: object
+                            $ref: "#/components/schemas/CommentRequest"
                             example:
                                 discussion_id: "{{DISCUSSION_ID}}"
                                 rich_text:
@@ -9107,7 +11454,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                type: object
+                                $ref: "#/components/schemas/Comment"
                             example:
                                 object: comment
                                 id: 6cd52483-6d55-4f8a-a724-4adb1c17ed43
