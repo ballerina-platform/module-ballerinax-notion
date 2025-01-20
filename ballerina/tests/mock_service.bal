@@ -12,96 +12,30 @@
 // "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
 // KIND, either express or implied.  See the License for the
 // specific language governing permissions and limitations
-// under the License. 
+// under the License.
 
 import ballerina/http;
 import ballerina/log;
 
 listener http:Listener httpListener = new (9090);
 
-http:Service mockService = service object { 
-    # Retrieve block children
-    #
-    # + id - block children ID
-    # + page_size - Page size
+http:Service mockService = service object {
+    # Delete a block
+    # + id - Block ID
     # + Notion\-Version - API Version
-    # + return - 200 Success - Retrieve block children 
-    resource function get v1/blocks/[string id]/children(string? page_size, @http:Header string? Notion\-Version = "2022-06-28") returns BlockChildrenResponse {
+    # + return - 200 Success
+    resource function delete v1/blocks/[string id](@http:Header string? Notion\-Version = "2022-06-28") returns record {} {
         return {
-            "object": "list",
-            "results": [],
-            "next_cursor": null,
-            "has_more": false
+            "object": "block",
+            "id": id
         };
     }
 
-    # Retrieve a database
-    #
-    # + id - Database ID
+    # Retrieve a block
+    # + id - Block ID
     # + Notion\-Version - API Version
-    # + return - 200 Success - Retrieve a database 
-    resource function get v1/databases/[string id](@http:Header string? Notion\-Version = "2022-06-28") returns Database {
-        return {
-            "object": "database",
-            "id": id,
-            "created_time": "2023-01-01T00:00:00.000Z",
-            "last_edited_time": "2023-01-01T00:00:00.000Z",
-            "title": [],
-            "properties": {}
-        };
-    }
-
-    # Retrieve a Page
-    #
-    # + id - Page ID
-    # + Notion\-Version - API Version
-    # + return - 200 Success - Retrieve a Page 
-    resource function get v1/pages/[string id](@http:Header string? Notion\-Version = "2022-06-28") returns PageResponse {
-        return {
-            "object": "page",
-            "id": id,
-            "created_time": "2023-01-01T00:00:00.000Z",
-            "last_edited_time": "2023-01-01T00:00:00.000Z",
-            "archived": false,
-            "properties": {}
-        };
-    }
-
-    # List all users
-    #
-    # + start_cursor - If supplied, this endpoint will return a page of results starting after the cursor provided. If not supplied, this endpoint will return the first page of results.
-    # + page_size - The number of items from the full list desired in the response. Maximum- 100
-    # + Notion\-Version - API Version
-    # + return - 200 Success - List all users 
-    resource function get v1/users(string? start_cursor, int? page_size, @http:Header string? Notion\-Version = "2022-06-28") returns PaginatedUsers {
-        return {
-            "object": "list",
-            "results": [],
-            "next_cursor": null,
-            "has_more": false
-        };
-    }
-
-    # Retrieve a user
-    #
-    # + id - User ID
-    # + Notion\-Version - API Version
-    # + return - 200 Success - Retrieve a user 
-    resource function get v1/users/[string id](@http:Header string? Notion\-Version = "2022-06-28") returns User {
-        return {
-            "object": "user",
-            "id": id,
-            "name": "Test User",
-            "type": "person"
-        };
-    }
-
-    # Append block children
-    #
-    # + id - block children ID
-    # + Notion\-Version - API Version
-    # + return - 200 Success - Append block children 
-    resource function patch v1/blocks/[string id]/children(@http:Payload PageUpdateRequestBody payload, @http:Header string? Notion\-Version = "2022-06-28") returns ChildBlockContent {
+    # + return - 200 Success
+    resource function get v1/blocks/[string id](@http:Header string? Notion\-Version = "2022-06-28") returns record {} {
         return {
             "object": "block",
             "id": id,
@@ -112,38 +46,207 @@ http:Service mockService = service object {
         };
     }
 
-    # List all databases
-    #
+    # Retrieve block children
+    # + id - Block ID
+    # + page_size - Page size
     # + Notion\-Version - API Version
-    # + return - 200 Success - List all databases 
-    resource function post v1/databases(@http:Payload DatabaseBodyParams payload, @http:Header string? Notion\-Version = "2022-06-28") returns DatabaseResponse {
+    # + return - 200 Success
+    resource function get v1/blocks/[string id]/children(int? page_size = (), @http:Header string? Notion\-Version = "2022-06-28") returns record {} {
         return {
-            "archived": false,
-            "created_time": "2023-01-01T00:00:00.000Z",
-            "id": "test_database_id",
-            "last_edited_time": "2023-01-01T00:00:00.000Z"
+            "object": "list",
+            "results": [],
+            "next_cursor": null,
+            "has_more": false
         };
     }
 
-    # Create a page
-    #
+    # Retrieve comments
+    # + block_id - Block ID
+    # + page_size - Page size
     # + Notion\-Version - API Version
-    # + payload - Page information 
-    # + return - 200 Success - Create Page 
-    resource function post v1/pages(@http:Payload PageBodyParams payload, @http:Header string? Notion\-Version = "2022-06-28") returns PageResponse {
+    # + return - 200 Success
+    resource function get v1/comments(string? block_id = (), int? page_size = (), @http:Header string? Notion\-Version = "2022-06-28") returns record {} {
         return {
-            "archived": false,
-            "id": "test_page_id",
-            "created_time": "2023-01-01T00:00:00.000Z",
-            "last_edited_time": "2023-01-01T00:00:00.000Z"
+            "object": "list",
+            "results": [],
+            "next_cursor": null,
+            "has_more": false
         };
     }
-    
-    # Searches all pages and child pages
-    #
+
+    # Retrieve a database
+    # + id - Database ID
     # + Notion\-Version - API Version
-    # + return - 200 Success - List all user 
-    resource function post v1/search(@http:Header string? Notion\-Version = "2022-06-28") returns record {} {
+    # + return - 200 Success
+    resource function get v1/databases/[string id](@http:Header string? Notion\-Version = "2022-06-28") returns record {} {
+        return {
+            "object": "database",
+            "id": id,
+            "created_time": "2023-01-01T00:00:00.000Z",
+            "last_edited_time": "2023-01-01T00:00:00.000Z",
+            "title": [],
+            "properties": {}
+        };
+    }
+
+    # Retrieve a page
+    # + id - Page ID
+    # + Notion\-Version - API Version
+    # + return - 200 Success
+    resource function get v1/pages/[string id](@http:Header string? Notion\-Version = "2022-06-28") returns record {} {
+        return {
+            "object": "page",
+            "id": id,
+            "created_time": "2023-01-01T00:00:00.000Z",
+            "last_edited_time": "2023-01-01T00:00:00.000Z",
+            "archived": false,
+            "properties": {}
+        };
+    }
+
+    # Retrieve a page property
+    # + pageId - Page ID
+    # + propertyId - Property ID
+    # + Notion\-Version - API Version
+    # + return - 200 Success
+    resource function get v1/pages/[string pageId]/properties/[string propertyId](@http:Header string? Notion\-Version = "2022-06-28") returns record {} {
+        return {
+            "object": "property_item",
+            "id": propertyId,
+            "type": "title"
+        };
+    }
+
+    # List all users
+    # + Notion\-Version - API Version
+    # + return - 200 Success
+    resource function get v1/users(@http:Header string? Notion\-Version = "2022-06-28") returns record {} {
+        return {
+            "object": "list",
+            "results": [],
+            "next_cursor": null,
+            "has_more": false
+        };
+    }
+
+    # Retrieve bot user
+    # + Notion\-Version - API Version
+    # + return - 200 Success
+    resource function get v1/users/me(@http:Header string? Notion\-Version = "2022-06-28") returns record {} {
+        return {
+            "object": "user",
+            "id": "test_bot_id",
+            "name": "Test Bot",
+            "type": "bot"
+        };
+    }
+
+    # Retrieve a user
+    # + id - User ID
+    # + Notion\-Version - API Version
+    # + return - 200 Success
+    resource function get v1/users/[string id](@http:Header string? Notion\-Version = "2022-06-28") returns record {} {
+        return {
+            "object": "user",
+            "id": id,
+            "name": "Test User",
+            "type": "person"
+        };
+    }
+
+    # Update block
+    # + id - Block ID
+    # + Notion\-Version - API Version
+    # + return - 200 Success
+    resource function patch v1/blocks/[string id](@http:Payload record {} payload, @http:Header string? Notion\-Version = "2022-06-28") returns record {} {
+        return {
+            "object": "block",
+            "id": id,
+            "type": "paragraph"
+        };
+    }
+
+    # Append block children
+    # + id - Block ID
+    # + Notion\-Version - API Version
+    # + return - 200 Success
+    resource function patch v1/blocks/[string id]/children(@http:Payload record {} payload, @http:Header string? Notion\-Version = "2022-06-28") returns record {} {
+        return {
+            "object": "block",
+            "id": id,
+            "has_children": true
+        };
+    }
+
+    # Update database
+    # + id - Database ID
+    # + Notion\-Version - API Version
+    # + return - 200 Success
+    resource function patch v1/databases/[string id](@http:Payload record {} payload, @http:Header string? Notion\-Version = "2022-06-28") returns record {} {
+        return {
+            "object": "database",
+            "id": id
+        };
+    }
+
+    # Update page
+    # + id - Page ID
+    # + Notion\-Version - API Version
+    # + return - 200 Success
+    resource function patch v1/pages/[string id](@http:Payload record {} payload, @http:Header string? Notion\-Version = "2022-06-28") returns record {} {
+        return {
+            "object": "page",
+            "id": id
+        };
+    }
+
+    # Create comment
+    # + Notion\-Version - API Version
+    # + return - 200 Success
+    resource function post v1/comments(@http:Payload record {} payload, @http:Header string? Notion\-Version = "2022-06-28") returns record {} {
+        return {
+            "object": "comment",
+            "id": "test_comment_id"
+        };
+    }
+
+    # Create database
+    # + Notion\-Version - API Version
+    # + return - 200 Success
+    resource function post v1/databases(@http:Payload record {} payload, @http:Header string? Notion\-Version = "2022-06-28") returns record {} {
+        return {
+            "object": "database",
+            "id": "test_database_id"
+        };
+    }
+
+    # Query database
+    # + id - Database ID
+    # + Notion\-Version - API Version
+    # + return - 200 Success
+    resource function post v1/databases/[string id]/query(@http:Payload record {} payload, @http:Header string? Notion\-Version = "2022-06-28") returns record {} {
+        return {
+            "object": "list",
+            "results": [],
+            "next_cursor": null,
+            "has_more": false
+        };
+    }
+
+    # Create page
+    # + Notion\-Version - API Version
+    # + return - 200 Success
+    resource function post v1/pages(@http:Payload record {} payload, @http:Header string? Notion\-Version = "2022-06-28") returns record {} {
+        return {
+            "object": "page",
+            "id": "test_page_id"
+        };
+    }
+
+    # Search
+    # + Notion\-Version - API Version
+    # + return - 200 Success
+    resource function post v1/search(@http:Payload record {} payload, @http:Header string? Notion\-Version = "2022-06-28") returns record {} {
         return {
             "object": "list",
             "results": [],
