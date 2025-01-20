@@ -52,7 +52,6 @@ function testRetrieveUser() returns error? {
     GetV1UsersIdHeaders headers = {
         "Notion-Version": "2022-06-28"
     };
-    string testUserId = "a5cb3e91-f3d4-4193-ad40-ff7eec1bcc03";
     User user = check notion->/v1/users/[testUserId](headers);
     test:assertNotEquals(user, (), "Retrieved user should not be null");
 }
@@ -88,7 +87,6 @@ function testAppendBlockChildren() returns error? {
             }
         }]
     };
-    string testBlockId = "897df8e5db924877b1f0238b499d61d4";
     ChildBlockContent childBlockContent = check notion->/v1/blocks/[testBlockId]/children.patch(payload, headers);
     test:assertNotEquals(childBlockContent, (), "Appended block children response should not be null");
 }
@@ -112,68 +110,67 @@ function testCreateDatabase() returns error? {
             }
         ],
         properties: {
-        "Name": {
-            "title": {}
-        },
-        "Description": {
-            "rich_text": {}
-        },
-        "In_stock": {
-            "checkbox": {}
-        },
-        "Food_group": {
-            "select": {
-                "options": [
-                    {
-                        "name": "🥦Vegetable",
-                        "color": "green"
-                    },
-                    {
-                        "name": "🍎Fruit",
-                        "color": "red"
-                    },
-                    {
-                        "name": "💪Protein",
-                        "color": "yellow"
-                    }
-                ]
+            Name: {
+                title: {}
+            },
+            Description: {
+                rich_text: {}
+            },
+            In\ stock: {
+                checkbox: {}
+            },
+            Food\ group: {
+                'select: {
+                    options: [
+                        {
+                            name: "🥦Vegetable",
+                            color: "green"
+                        },
+                        {
+                            name: "🍎Fruit",
+                            color: "red"
+                        },
+                        {
+                            name: "💪Protein",
+                            color: "yellow"
+                        }
+                    ]
+                }
+            },
+            Price: {
+                number: {
+                    format: "dollar"
+                }
+            },
+            Last\ ordered: {
+                date: {}
+            },
+            Store\ availability: {
+                multi_select: {
+                    options: [
+                        {
+                            name: "Duc Loi Market",
+                            color: "blue"
+                        },
+                        {
+                            name: "Rainbow Grocery",
+                            color: "gray"
+                        },
+                        {
+                            name: "Nijiya Market",
+                            color: "purple"
+                        },
+                        {
+                            name: "Gus's Community Market",
+                            color: "yellow"
+                        }
+                    ]
+                }
+            },
+            Photo: {
+                files: {}
             }
-        },
-        "Price": {
-            "number": {
-                "format": "dollar"
-            }
-        },
-        "Last_ordered": {
-            "date": {}
-        },
-        "Store_availability": {
-            "type": "multi_select",
-            "multi_select": {
-                "options": [
-                    {
-                        "name": "Duc Loi Market",
-                        "color": "blue"
-                    },
-                    {
-                        "name": "Rainbow Grocery",
-                        "color": "gray"
-                    },
-                    {
-                        "name": "Nijiya Market",
-                        "color": "purple"
-                    },
-                    {
-                        "name": "Gus's Community Market",
-                        "color": "yellow"
-                    }
-                ]
-            }
-        },
-        "Photo": {
-            "files": {}
-        }
-    }
+        }   
     };
     CreateDatabaseResponse databaseBodyParams = check notion->/v1/databases.post(payload, headers);
     test:assertNotEquals(databaseBodyParams, (), "Created database response should not be null");
@@ -225,22 +222,20 @@ function testGetBlockChildren() returns error? {
     GetV1BlocksIdChildrenHeaders headers = {
         "Notion-Version": "2022-06-28"
     };
-    string testBlockId = "897df8e5db924877b1f0238b499d61d4";
     BlockChildrenResponse blockChildrenResponse = check notion->/v1/blocks/[testBlockId]/children(headers);
     test:assertNotEquals(blockChildrenResponse, (), "Block children response should not be null");
 }
 
-// @test:Config {
-//     groups: ["live_tests", "mock_tests"]
-// }
-// function testRetrieveDatabase() returns error? {
-//     GetV1DatabasesIdHeaders headers = {
-//         "Notion-Version": "2022-06-28"
-//     };
-//     string testDatabaseId = "180f9eb1-5b47-8191-8504-d9b3cec910ae";
-//     Database response = check notion->/v1/databases/[testDatabaseId](headers);
-//     test:assertNotEquals(response, (), "Retrieved database should not be null");
-// }
+@test:Config {
+    groups: ["live_tests", "mock_tests"]
+}
+function testRetrieveDatabase() returns error? {
+    GetV1DatabasesIdHeaders headers = {
+        "Notion-Version": "2022-06-28"
+    };
+    Database response = check notion->/v1/databases/[testDatabaseId](headers);
+    test:assertNotEquals(response, (), "Retrieved database should not be null");
+}
 
 @test:Config {
     groups: ["live_tests", "mock_tests"]
@@ -249,7 +244,6 @@ function testRetrievePage() returns error? {
     GetV1PagesIdHeaders headers = {
         "Notion-Version": "2022-06-28"
     };
-    string testPageId = "897df8e5db924877b1f0238b499d61d4";
     PageResponse pageResponse = check notion->/v1/pages/[testPageId](headers);
     test:assertNotEquals(pageResponse, (), "Retrieved page should not be null");
 }
@@ -261,7 +255,6 @@ function testRetrieveBlock() returns error? {
     GetV1BlocksIdHeaders headers = {
         "Notion-Version": "2022-06-28"
     };
-    string testBlockId = "897df8e5db924877b1f0238b499d61d4";
     BlockResponse response = check notion->/v1/blocks/[testBlockId](headers);
     test:assertNotEquals(response, (), "Retrieved block should not be null");
 }
@@ -273,7 +266,6 @@ function testRetrieveComments() returns error? {
     GetV1CommentsHeaders headers = {
         "Notion-Version": "2022-06-28"
     };
-    string testBlockId = "897df8e5db924877b1f0238b499d61d4";
     GetV1CommentsQueries queries = {
         block_id: testBlockId,
         page_size: 10
@@ -282,26 +274,25 @@ function testRetrieveComments() returns error? {
     test:assertNotEquals(response, (), "Comments response should not be null");
 }
 
-// @test:Config {
-//     groups: ["live_tests", "mock_tests"]
-// }
-// function testUpdateDatabase() returns error? {
-//     PatchV1DatabasesIdHeaders headers = {
-//         "Notion-Version": "2022-06-28"
-//     };
-//     DatabasePatchRequest payload = {
-//         title: [
-//             {
-//                 text: {
-//                     content: "Updated database"
-//                 }
-//             }
-//         ]
-//     };
-//     string testDatabaseId = "180f9eb1-5b47-8191-8504-d9b3cec910ae";
-//     Database response = check notion->/v1/databases/[testDatabaseId].patch(payload, headers);
-//     test:assertNotEquals(response, (), "Update database response should not be null");
-// }
+@test:Config {
+    groups: ["live_tests", "mock_tests"]
+}
+function testUpdateDatabase() returns error? {
+    PatchV1DatabasesIdHeaders headers = {
+        "Notion-Version": "2022-06-28"
+    };
+    DatabasePatchRequest payload = {
+        title: [
+            {
+                text: {
+                    content: "Updated database"
+                }
+            }
+        ]
+    };
+    Database response = check notion->/v1/databases/[testDatabaseId].patch(payload, headers);
+    test:assertNotEquals(response, (), "Update database response should not be null");
+}
 
 @test:Config {
     groups: ["live_tests", "mock_tests"]
@@ -310,7 +301,6 @@ function testRetrievePageProperty() returns error? {
     GetV1PagesPage_idPropertiesProperty_idHeaders headers = {
         "Notion-Version": "2022-06-28"
     };
-    string testPageId = "897df8e5db924877b1f0238b499d61d4";
     RollupListPropertyItem|PropertyItemResult|NumberPropertyItem response = check notion->/v1/pages/[testPageId]/properties/["title"](headers);
     test:assertNotEquals(response, (), "Page property response should not be null");
 }
@@ -322,7 +312,6 @@ function testAddComment() returns error? {
     PostV1CommentsHeaders headers = {
         "Notion-Version": "2022-06-28"
     };
-    string testPageId = "897df8e5db924877b1f0238b499d61d4";
     CommentRequest payload = {
         parent: {
             page_id: testPageId
@@ -349,7 +338,6 @@ function testArchivePage() returns error? {
     ArchivePageRequest payload = {
         archived: false
     };
-    string testPageId = "897df8e5db924877b1f0238b499d61d4";
     PageUpdatedProperties response = check notion->/v1/pages/[testPageId].patch(payload, headers);
     test:assertNotEquals(response, (), "Archive page response should not be null");
 }
@@ -366,8 +354,6 @@ function testQueryDatabase() returns error? {
             or: []
         }
     };
-
-    string testDatabaseId = "180f9eb1-5b47-8191-8504-d9b3cec910ae";
     DatabaseQueryResponse response = check notion->/v1/databases/[testDatabaseId]/query.post(payload, headers);
     test:assertNotEquals(response, (), "Query database response should not be null");
 }
