@@ -1,5 +1,13 @@
 # Ballerina Notion connector
 
+
+### Key Features
+
+- Interact with Notion databases and pages programmatically
+- Create, update, and query database entries
+- Manage page content and properties
+- Search across Notion workspace content
+
 ## Overview
 
 The Notion connector allows you to interact with Notion databases and pages programmatically. This module supports various REST API versions provided by Notion and enables you to perform operations such as reading, creating, and updating Notion pages and databases. It’s designed to streamline integration with Notion’s API by simplifying the credential setup and providing easy-to-use methods for interacting with Notion content.
